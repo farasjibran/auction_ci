@@ -70,7 +70,7 @@
 		<div class="row">
 			<div class="col loginacc">
 				<!-- Logo -->
-				<a href="index.php"><img class="imgback" width="150" src="<?php echo base_url('assets/image/logohitam.png') ?>"></a>
+				<a href="<?php echo site_url('homecontroller/index') ?>"><img class="imgback" width="150" src="<?php echo base_url('assets/image/logohitam.png') ?>"></a>
 
 				<!-- Input User -->
 				<p class="user">Username</p>
