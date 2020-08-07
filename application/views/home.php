@@ -58,7 +58,7 @@
 		<a class="navbar-brand brnd" href="#">
 			<img src="<?php echo base_url('assets/image/logohitam.png') ?>" width="" height="30" class="d-inline-block align-top" alt="" loading="lazy">
 		</a>
-		<a href="login.php"><button type="button" class="btn btn-primary loginbtn"><b>Login</b><span><img src="<?php echo base_url('assets/image/arrowright.png') ?>" width="15" height="15" style="margin-left: 10px;"></span></button></a>
+		<a href="<?php echo site_url('homecontroller/login') ?>"><button type="button" class="btn btn-primary loginbtn"><b>Login</b><span><img src="<?php echo base_url('assets/image/arrowright.png') ?>" width="15" height="15" style="margin-left: 10px;"></span></button></a>
 	</nav>
 
 	<!-- Container -->
@@ -73,7 +73,7 @@
 						of stolen goods.</b></h1>
 				<p>We help people to sell or auction <br>
 					their goods safely to many countries</p>
-				<a href="#"><button type="button" class="btn btn-primary btnslogan"><b>Login</b><span><img src="<?php echo base_url('assets/image/arrowright.png') ?>" width="15" height="15" style="margin-left: 10px;"></span></button></a>
+				<a href="<?php echo site_url('homecontroller/login') ?>"><button type="button" class="btn btn-primary btnslogan"><b>Login</b><span><img src="<?php echo base_url('assets/image/arrowright.png') ?>" width="15" height="15" style="margin-left: 10px;"></span></button></a>
 			</div>
 		</div>
 	</div>
