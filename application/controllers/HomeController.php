@@ -14,4 +14,10 @@ class HomeController extends CI_Controller
 		$title['title'] = "Auction";
 		$this->load->view('login', $title);
 	}
+
+	public function register()
+	{
+		$title['title'] = "Auction";
+		$this->load->view('register', $title);
+	}
 }

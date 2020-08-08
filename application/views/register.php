@@ -5,26 +5,20 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Auction</title>
+	<!-- Style -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 
-	<!-- Bootstrap Style-->
-	<link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/bootstrap.min.css') ?>">
-
-	<!-- Font Style -->
-	<link href="https://fonts.googleapis.com/css2?family=Roboto" rel="stylesheet">
+	<!-- Style / My css -->
+	<link rel="stylesheet" href="asset/style/style.css">
 
 	<!-- Style -->
 	<style>
-		/* Login Style */
-		body {
-			font-family: Roboto;
-		}
-
 		.loginacc {
 			margin-right: -30%;
 		}
 
 		.imgback {
-			margin-top: 27%;
+			margin-top: 23%;
 			margin-left: 2%;
 		}
 
@@ -84,28 +78,21 @@
 					<input type="password" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="basic-addon1">
 				</div>
 
-				<!-- Button -->
-				<div class="btngrup">
-					<button type="button" class="btn btn-primary btnsign"><b>Sign In</b></button>
+				<!-- Input Confirm Password -->
+				<p class="passwd">Confirm Password</p>
+				<div class="input-group mb-3 inputuser">
+					<input type="password" class="form-control" placeholder="Confirm Password" aria-label="Password" aria-describedby="basic-addon1">
 				</div>
 
-				<!-- Chechbox -->
-				<div class="cekbox">
-					<div class="row">
-						<div class="col-sm" style="margin-right: -37%;">
-							<input type="checkbox" aria-label="Checkbox for following text input"> Remember Me
-						</div>
-						<div class="col-sm">
-							<a href="#">
-								<p style="color: #0D8FFF;">Forgot Password?</p>
-							</a>
-						</div>
-					</div>
+				<!-- Button -->
+				<div class="btngrup">
+					<button type="button" class="btn btn-primary btnsign"><b>Register</b></button>
 				</div>
+
 
 				<!-- Some Text -->
 				<div class="sometext">
-					<p>Don't Have An Account ? <span style="color: #0D8FFF;"><a href="<?php echo site_url('homecontroller/register') ?>">Join Here</a></span></p>
+					<p>Have An Account ? <span style="color: #0D8FFF;"><a href="<?php echo site_url('homecontroller/login') ?>">Login Here</a></span></p>
 				</div>
 			</div>
 
@@ -117,8 +104,5 @@
 	</div>
 
 </body>
-
-<!-- Bootstrap Js -->
-<script type="text/javascript" src="<?php echo base_url('assets/js/bootstrap.min.js') ?>"></script>
 
 </html>
