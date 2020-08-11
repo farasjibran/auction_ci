@@ -8,11 +8,21 @@
 	<!-- Style -->
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 
-	<!-- Style / My css -->
-	<link rel="stylesheet" href="asset/style/style.css">
+	<!-- Js -->
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
+	<!-- Font Style -->
+	<link href="https://fonts.googleapis.com/css2?family=Roboto" rel="stylesheet">
 
 	<!-- Style -->
 	<style>
+		/* Login Style */
+		body {
+			font-family: Roboto;
+		}
+
 		.loginacc {
 			margin-right: -30%;
 		}
@@ -55,6 +65,11 @@
 			margin-top: 21%;
 			margin-left: -3%;
 		}
+
+		.drpdw {
+			margin-left: -13%;
+			width: 20%;
+		}
 	</style>
 </head>
 
@@ -66,29 +81,35 @@
 				<!-- Logo -->
 				<a href="<?php echo site_url('homecontroller/index') ?>"><img class="imgback" width="150" src="<?php echo base_url('assets/image/logohitam.png') ?>"></a>
 
-				<!-- Input User -->
-				<p class="user">Username</p>
-				<div class="input-group mb-3 inputuser">
-					<input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
-				</div>
+				<!-- Form Input Register -->
+				<form action="<?php echo site_url('homecontroller/registerUser') ?>" method="POST" enctype="multipart/form-data">
+					<!-- Input User -->
+					<p class="user">Username</p>
+					<div class="input-group mb-3 inputuser">
+						<input name="username" type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+					</div>
 
-				<!-- Input Password -->
-				<p class="passwd">Password</p>
-				<div class="input-group mb-3 inputuser">
-					<input type="password" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="basic-addon1">
-				</div>
+					<!-- Input Password -->
+					<p class="passwd">Password</p>
+					<div class="input-group mb-3 inputuser">
+						<input name="password" type="password" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="basic-addon1">
+					</div>
 
-				<!-- Input Confirm Password -->
-				<p class="passwd">Confirm Password</p>
-				<div class="input-group mb-3 inputuser">
-					<input type="password" class="form-control" placeholder="Confirm Password" aria-label="Password" aria-describedby="basic-addon1">
-				</div>
+					<!-- Input Confirm Password -->
+					<p class="passwd">Role</p>
+					<select class="custom-select drpdw" name="role">
+						<option selected>Select Role</option>
+						<option value="1">Administrator</option>
+						<option value="2">Petugas</option>
+						<option value="3">User</option>
+					</select>
 
-				<!-- Button -->
-				<div class="btngrup">
-					<button type="button" class="btn btn-primary btnsign"><b>Register</b></button>
-				</div>
+					<!-- Button -->
+					<div class="btngrup">
+						<button type="submit" class="btn btn-primary btnsign"><b>Register</b></button>
+					</div>
 
+				</form>
 
 				<!-- Some Text -->
 				<div class="sometext">

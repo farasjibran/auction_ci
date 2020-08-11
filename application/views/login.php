@@ -6,8 +6,13 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Auction</title>
 
-	<!-- Bootstrap Style-->
-	<link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/bootstrap.min.css') ?>">
+	<!-- Style -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+	<!-- Js -->
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
 
 	<!-- Font Style -->
 	<link href="https://fonts.googleapis.com/css2?family=Roboto" rel="stylesheet">
@@ -72,22 +77,25 @@
 				<!-- Logo -->
 				<a href="<?php echo site_url('homecontroller/index') ?>"><img class="imgback" width="150" src="<?php echo base_url('assets/image/logohitam.png') ?>"></a>
 
-				<!-- Input User -->
-				<p class="user">Username</p>
-				<div class="input-group mb-3 inputuser">
-					<input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
-				</div>
+				<form action="<?php echo site_url('homecontroller/loginUser') ?>" method="POST">
+					<!-- Input User -->
+					<p class="user">Username</p>
+					<div class="input-group mb-3 inputuser">
+						<input name="username" type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+					</div>
 
-				<!-- Input Password -->
-				<p class="passwd">Password</p>
-				<div class="input-group mb-3 inputuser">
-					<input type="password" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="basic-addon1">
-				</div>
+					<!-- Input Password -->
+					<p class="passwd">Password</p>
+					<div class="input-group mb-3 inputuser">
+						<input name="password" type="password" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="basic-addon1">
+					</div>
 
-				<!-- Button -->
-				<div class="btngrup">
-					<button type="button" class="btn btn-primary btnsign"><b>Sign In</b></button>
-				</div>
+					<!-- Button -->
+					<div class="btngrup">
+						<button type="submit" class="btn btn-primary btnsign"><b>Sign In</b></button>
+					</div>
+
+				</form>
 
 				<!-- Chechbox -->
 				<div class="cekbox">
@@ -117,8 +125,5 @@
 	</div>
 
 </body>
-
-<!-- Bootstrap Js -->
-<script type="text/javascript" src="<?php echo base_url('assets/js/bootstrap.min.js') ?>"></script>
 
 </html>
