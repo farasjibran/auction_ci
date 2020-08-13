@@ -66,7 +66,7 @@ class HomeController extends CI_Controller
 			$this->session->set_userdata($data_session);
 
 			if ($this->session->userdata('status') == 'login') {
-				header("Location: " . base_url() . 'index.php/homecontroller/datauser');
+				header("Location: " . base_url() . 'index.php/homecontroller/adminhome');
 			} else {
 				echo "Username Atau Password Anda Salah!";
 			}
@@ -80,5 +80,12 @@ class HomeController extends CI_Controller
 	{
 		$this->session->sess_destroy();
 		redirect(base_url());
+	}
+
+	// admin home
+	public function adminHome()
+	{
+		$title['title'] = "Auction";
+		$this->load->view('admin/homeadmin', $title);
 	}
 }
