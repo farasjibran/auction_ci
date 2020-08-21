@@ -25,6 +25,7 @@
 
 		.loginacc {
 			margin-right: -30%;
+			margin-top: -2%;
 		}
 
 		.imgback {
@@ -82,17 +83,19 @@
 				<a href="<?php echo site_url('homecontroller/index') ?>"><img class="imgback" width="150" src="<?php echo base_url('assets/image/logohitam.png') ?>"></a>
 
 				<!-- Form Input Register -->
-				<form action="<?php echo site_url('homecontroller/registerUser') ?>" method="POST" enctype="multipart/form-data">
+				<form action="<?php echo site_url('homecontroller/registerUser') ?>" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
 					<!-- Input User -->
 					<p class="user">Username</p>
 					<div class="input-group mb-3 inputuser">
-						<input name="username" type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+						<input name="username" type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" required>
+						<div class="invalid-feedback">Please enter a valid username.</div>
 					</div>
 
 					<!-- Input Password -->
 					<p class="passwd">Password</p>
 					<div class="input-group mb-3 inputuser">
-						<input name="password" type="password" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="basic-addon1">
+						<input name="password" type="password" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="basic-addon1" required>
+						<div class="invalid-feedback">Please enter a valid password.</div>
 					</div>
 
 					<!-- Input Confirm Password -->
@@ -119,11 +122,33 @@
 
 			<!-- Image Background -->
 			<div class="col">
-				<img width="150%" height="722" src="<?php echo base_url('assets/image/imgback.png') ?>">
+				<img width="150%" height="770" src="<?php echo base_url('assets/image/imgback.png') ?>">
 			</div>
 		</div>
 	</div>
 
 </body>
+
+<!-- JavaScript for disabling form submissions if there are invalid fields -->
+<script>
+	// Self-executing function
+	(function() {
+		'use strict';
+		window.addEventListener('load', function() {
+			// Fetch all the forms we want to apply custom Bootstrap validation styles to
+			var forms = document.getElementsByClassName('needs-validation');
+			// Loop over them and prevent submission
+			var validation = Array.prototype.filter.call(forms, function(form) {
+				form.addEventListener('submit', function(event) {
+					if (form.checkValidity() === false) {
+						event.preventDefault();
+						event.stopPropagation();
+					}
+					form.classList.add('was-validated');
+				}, false);
+			});
+		}, false);
+	})();
+</script>
 
 </html>

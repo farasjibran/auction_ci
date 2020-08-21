@@ -71,7 +71,7 @@ class HomeController extends CI_Controller
 				echo "Username Atau Password Anda Salah!";
 			}
 		} else {
-			echo "Data Tidak Ditemukan";
+			header("Location: " . base_url() . 'index.php/homecontroller/error404');
 		}
 	}
 
@@ -85,7 +85,16 @@ class HomeController extends CI_Controller
 	// admin home
 	public function adminHome()
 	{
-		$title['title'] = "Auction";
-		$this->load->view('admin/homeadmin', $title);
+		$data['title'] = "Auction";
+		$data['barang'] = $this->modelsystem->get_barang();
+		$data['c_barang'] = $this->modelsystem->count_barang();
+		$this->load->view('admin/homeadmin', $data);
+	}
+
+	// 404 password
+	public function error404()
+	{
+		$data['title'] = "404";
+		$this->load->view('404', $data);
 	}
 }

@@ -4,6 +4,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class modelsystem extends CI_Model
 {
+	// for login & register
 	public function simpanData()
 	{
 		// $config['upload_path'] = './assets/';
@@ -43,5 +44,19 @@ class modelsystem extends CI_Model
 	public function cek_login($table, $where)
 	{
 		return $this->db->get_where($table, $where);
+	}
+
+
+	// for barang
+	public function get_barang()
+	{
+		$data = $this->db->get('tb_barang');
+		return $data->result();
+	}
+
+	public function count_barang()
+	{
+		$data = $this->db->get('tb_barang');
+		return $data->num_rows();
 	}
 }
