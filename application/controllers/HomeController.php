@@ -105,12 +105,36 @@ class HomeController extends CI_Controller
 		$this->modelsystem->simpanBarang();
 	}
 
-	function getBarang($id)
+	// get data barang
+	public function getBarang($id)
 	{
 		$where = array('id_barang' => $id);
 		$data['title'] = "Auction";
 		$data['barang'] = $this->modelsystem->edit_data('tb_barang', $where)->result();
 		$this->load->view('admin/edit', $data);
+	}
+
+	// update barang
+	public function updateData()
+	{
+		$idbarangs = $this->input->post('idbarang');
+		$namabarangs = $this->input->post('namabarang');
+		$hargabarangs = $this->input->post('hargabarang');
+		$deskripsiitems = $this->input->post('deskripsiitem');
+
+		$data = array(
+			'nama_barang' => $namabarangs,
+			'harga_awal' => $hargabarangs,
+			'deskripsi_barang' => $deskripsiitems
+		);
+
+		$where = array(
+			'id_barang' => $idbarangs
+		);
+
+		$this->db->set('tanggal_upload', 'NOW()', FALSE);
+		$this->modelsystem->update_data($where, $data, 'tb_barang');
+		header("Location: " . base_url() . 'index.php/homecontroller/adminHome');
 	}
 
 	// 404 password

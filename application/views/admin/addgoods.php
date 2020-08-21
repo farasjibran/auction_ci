@@ -190,7 +190,7 @@
 									<textarea name="deskripsiitem" type="text" class="form-control" aria-label="With textarea" aria-describedby="inputGroup-sizing-default" placeholder="Put Some Text..."></textarea>
 								</div>
 								<!-- Button Save Data -->
-								<button type="submit" class="btn btn-success btn-icon-split" data-dismiss="alert">
+								<button type="submit" class="btn btn-success btn-icon-split">
 									<span class="icon text-white">
 										<i class="fas fa-check"></i>
 									</span>

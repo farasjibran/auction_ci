@@ -68,9 +68,15 @@ class modelsystem extends CI_Model
 		return $data->result();
 	}
 
-	function edit_data($table, $where)
+	public function edit_data($table, $where)
 	{
 		return $this->db->get_where($table, $where);
+	}
+
+	public function update_data($where, $data, $table)
+	{
+		$this->db->where($where);
+		$this->db->update($table, $data);
 	}
 
 	public function count_barang()

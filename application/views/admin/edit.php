@@ -169,7 +169,7 @@
 							foreach ($barang as $barangs) {
 							?>
 								<!-- Input A Name -->
-								<form action="<?php echo site_url('homecontroller/addData') ?>" method="post">
+								<form action="<?php echo site_url('homecontroller/updateData') ?>" method="post">
 									<input name="idbarang" type="hidden" value="<?php echo $barangs->id_barang ?>">
 									<div class="input-group mb-3">
 										<div class="input-group-prepend">
@@ -194,7 +194,7 @@
 										<textarea name="deskripsiitem" type="text" class="form-control" aria-label="With textarea" aria-describedby="inputGroup-sizing-default"><?php echo $barangs->deskripsi_barang ?></textarea>
 									</div>
 									<!-- Button Save Data -->
-									<button type="submit" class="btn btn-success btn-icon-split" data-dismiss="alert">
+									<button type="submit" class="btn btn-success btn-icon-split">
 										<span class="icon text-white">
 											<i class="fas fa-edit"></i>
 										</span>
