@@ -64,7 +64,6 @@
 					<div class="bg-white py-2 collapse-inner rounded">
 						<h6 class="collapse-header">Action For Goods</h6>
 						<a class="collapse-item" href="<?php echo site_url('homecontroller/addGoods') ?>">Add Goods</a>
-						<a class="collapse-item" href="cards.html">Edit Or Delete Goods</a>
 					</div>
 				</div>
 			</li>
@@ -179,6 +178,7 @@
 												<th scope="col">Tanggal Upload</th>
 												<th scope="col">Harga Awal</th>
 												<th scope="col">Deskripsi Barang</th>
+												<th scope="col">Action</th>
 											</tr>
 										</thead>
 										<tbody>
@@ -192,6 +192,20 @@
 														<td><?php echo $barangs->tanggal_upload ?></td>
 														<td><?php echo $barangs->harga_awal ?></td>
 														<td><?php echo $barangs->deskripsi_barang ?></td>
+														<td>
+															<a href="<?php echo site_url('homecontroller/getBarang/' . $barangs->id_barang) ?>" class="btn btn-primary btn-icon-split" style="padding-right: 6%;">
+																<span class="icon text-white">
+																	<i class="fas fa-edit"></i>
+																</span>
+																<span class="text">Edit Data</span>
+															</a>
+															<a href="#" class="btn btn-danger btn-icon-split mt-2">
+																<span class="icon text-white">
+																	<i class="fas fa-trash"></i>
+																</span>
+																<span class="text">Delete Data</span>
+															</a>
+														</td>
 													</tr>
 											<?php }
 											} else {

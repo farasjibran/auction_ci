@@ -8,6 +8,7 @@ class HomeController extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->model('modelsystem');
+		$this->load->helper('url');
 	}
 
 	public function index()
@@ -102,6 +103,14 @@ class HomeController extends CI_Controller
 	public function addData()
 	{
 		$this->modelsystem->simpanBarang();
+	}
+
+	function getBarang($id)
+	{
+		$where = array('id_barang' => $id);
+		$data['title'] = "Auction";
+		$data['barang'] = $this->modelsystem->edit_data('tb_barang', $where)->result();
+		$this->load->view('admin/edit', $data);
 	}
 
 	// 404 password

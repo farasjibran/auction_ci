@@ -40,7 +40,7 @@
 			<hr class="sidebar-divider my-0">
 
 			<!-- Nav Item - Dashboard -->
-			<li class="nav-item">
+			<li class="nav-item active">
 				<a class="nav-link" href="<?php echo site_url('homecontroller/adminHome') ?>">
 					<i class="fas fa-fw fa-tachometer-alt"></i>
 					<span>Dashboard</span></a>
@@ -55,15 +55,15 @@
 			</div>
 
 			<!-- Nav Item - Pages Collapse Menu -->
-			<li class="nav-item active">
+			<li class="nav-item">
 				<a class="nav-link " href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
 					<i class="fas fa-fw fa-cog"></i>
 					<span>Action</span>
 				</a>
-				<div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
 						<h6 class="collapse-header">Action For Goods</h6>
-						<a class="collapse-item active" href="<?php echo site_url('homecontroller/addGoods') ?>">Add Goods</a>
+						<a class="collapse-item" href="<?php echo site_url('homecontroller/addGoods') ?>">Add Goods</a>
 					</div>
 				</div>
 			</li>
@@ -153,7 +153,7 @@
 
 					<!-- Page Heading -->
 					<div class="d-sm-flex align-items-center justify-content-between mb-4">
-						<h1 class="h3 mb-0 text-gray-800">Add Goods</h1>
+						<h1 class="h3 mb-0 text-gray-800">Edit Goods</h1>
 					</div>
 
 
@@ -165,38 +165,45 @@
 						</div>
 						<!-- Card Body -->
 						<div class="card-body">
-							<!-- Input A Name -->
-							<form action="<?php echo site_url('homecontroller/addData') ?>" method="post">
-								<div class="input-group mb-3">
-									<div class="input-group-prepend">
-										<span class="input-group-text bg-primary text-white" id="inputGroup-sizing-default">
-											Name Of Goods</span>
+							<?php
+							foreach ($barang as $barangs) {
+							?>
+								<!-- Input A Name -->
+								<form action="<?php echo site_url('homecontroller/addData') ?>" method="post">
+									<input name="idbarang" type="hidden" value="<?php echo $barangs->id_barang ?>">
+									<div class="input-group mb-3">
+										<div class="input-group-prepend">
+											<span class="input-group-text bg-primary text-white" id="inputGroup-sizing-default">
+												Name Of Goods</span>
+										</div>
+										<input name="namabarang" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" value="<?php echo $barangs->nama_barang ?>">
 									</div>
-									<input name="namabarang" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" placeholder="Put Some Text...">
-								</div>
-								<!-- Input A Price -->
-								<div class="input-group mb-3">
-									<div class="input-group-prepend">
-										<span class="input-group-text bg-primary text-white" id="inputGroup-sizing-default" style="width: 140px;">Price</span>
+									<!-- Input A Price -->
+									<div class="input-group mb-3">
+										<div class="input-group-prepend">
+											<span class="input-group-text bg-primary text-white" id="inputGroup-sizing-default" style="width: 140px;">Price</span>
+										</div>
+										<input name="hargabarang" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" value="<?php echo $barangs->harga_awal ?>">
 									</div>
-									<input name="hargabarang" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" placeholder="Put Some Number...">
-								</div>
-								<!-- Input A Description -->
-								<div class="input-group mb-3">
-									<div class="input-group-prepend">
-										<span class="input-group-text bg-primary text-white" id="inputGroup-sizing-default">
-											Item Description</span>
+									<!-- Input A Description -->
+									<div class="input-group mb-3">
+										<div class="input-group-prepend">
+											<span class="input-group-text bg-primary text-white" id="inputGroup-sizing-default">
+												Item Description</span>
+										</div>
+										<textarea name="deskripsiitem" type="text" class="form-control" aria-label="With textarea" aria-describedby="inputGroup-sizing-default"><?php echo $barangs->deskripsi_barang ?></textarea>
 									</div>
-									<textarea name="deskripsiitem" type="text" class="form-control" aria-label="With textarea" aria-describedby="inputGroup-sizing-default" placeholder="Put Some Text..."></textarea>
-								</div>
-								<!-- Button Save Data -->
-								<button type="submit" class="btn btn-success btn-icon-split" data-dismiss="alert">
-									<span class="icon text-white">
-										<i class="fas fa-check"></i>
-									</span>
-									<span class="text">Save Data</span>
-								</button>
-							</form>
+									<!-- Button Save Data -->
+									<button type="submit" class="btn btn-success btn-icon-split" data-dismiss="alert">
+										<span class="icon text-white">
+											<i class="fas fa-edit"></i>
+										</span>
+										<span class="text">Update Data</span>
+									</button>
+								</form>
+							<?php
+							}
+							?>
 						</div>
 					</div>
 				</div>

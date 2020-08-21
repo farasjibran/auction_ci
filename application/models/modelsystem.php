@@ -50,7 +50,6 @@ class modelsystem extends CI_Model
 	// for barang
 	public function simpanBarang()
 	{
-		$this->load->helper('date');
 		$data = array(
 			'id_barang' => "",
 			'nama_barang' => $this->input->post('namabarang'),
@@ -62,10 +61,16 @@ class modelsystem extends CI_Model
 		$this->db->insert('tb_barang', $data);
 		header("Location: " . base_url() . 'index.php/homecontroller/addGoods');
 	}
+
 	public function get_barang()
 	{
 		$data = $this->db->get('tb_barang');
 		return $data->result();
+	}
+
+	function edit_data($table, $where)
+	{
+		return $this->db->get_where($table, $where);
 	}
 
 	public function count_barang()
