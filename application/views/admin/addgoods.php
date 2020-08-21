@@ -40,8 +40,8 @@
 			<hr class="sidebar-divider my-0">
 
 			<!-- Nav Item - Dashboard -->
-			<li class="nav-item active">
-				<a class="nav-link" href="index.html">
+			<li class="nav-item">
+				<a class="nav-link" href="<?php echo site_url('homecontroller/adminHome') ?>">
 					<i class="fas fa-fw fa-tachometer-alt"></i>
 					<span>Dashboard</span></a>
 			</li>
@@ -55,15 +55,15 @@
 			</div>
 
 			<!-- Nav Item - Pages Collapse Menu -->
-			<li class="nav-item">
-				<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+			<li class="nav-item active">
+				<a class="nav-link " href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
 					<i class="fas fa-fw fa-cog"></i>
 					<span>Action</span>
 				</a>
-				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+				<div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
 						<h6 class="collapse-header">Action For Goods</h6>
-						<a class="collapse-item" href="<?php echo site_url('homecontroller/addGoods') ?>">Add Goods</a>
+						<a class="collapse-item active" href="<?php echo site_url('homecontroller/addGoods') ?>">Add Goods</a>
 						<a class="collapse-item" href="cards.html">Edit Or Delete Goods</a>
 					</div>
 				</div>
@@ -154,57 +154,52 @@
 
 					<!-- Page Heading -->
 					<div class="d-sm-flex align-items-center justify-content-between mb-4">
-						<h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-						<a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+						<h1 class="h3 mb-0 text-gray-800">Add Goods</h1>
 					</div>
+
 
 					<!-- Content Row -->
-
-					<div class="row-fluid">
-
-						<!-- Area Data -->
-						<div class="card shadow mb-4">
-							<!-- Card Header - Dropdown -->
-							<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-								<h6 class="m-0 font-weight-bold text-primary">Data Barang</h6>
-							</div>
-							<!-- Card Body -->
-							<div class="card-body">
-								<div class="table-responsive">
-									<table class="table table-bordered" cellspacing="0" width="100%" id="dataTable">
-										<thead class="bg-primary text-white">
-											<tr>
-												<th scope="col">Id Barang</th>
-												<th scope="col">Nama Barang</th>
-												<th scope="col">Tanggal Upload</th>
-												<th scope="col">Harga Awal</th>
-												<th scope="col">Deskripsi Barang</th>
-											</tr>
-										</thead>
-										<tbody>
-											<?php
-											if ($c_barang > 0) {
-												foreach ($barang as $barangs) {
-											?>
-													<tr>
-														<th scope="row"><?php echo $barangs->id_barang ?></th>
-														<td><?php echo $barangs->nama_barang ?></td>
-														<td><?php echo $barangs->tanggal_upload ?></td>
-														<td><?php echo $barangs->harga_awal ?></td>
-														<td><?php echo $barangs->deskripsi_barang ?></td>
-													</tr>
-											<?php }
-											} else {
-												echo "Data Tidak Ditemukan";
-											}
-											?>
-										</tbody>
-									</table>
+					<div class="card shadow mb-4">
+						<!-- Card Header - Dropdown -->
+						<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+							<h6 class="m-0 font-weight-bold text-primary">Add Data</h6>
+						</div>
+						<!-- Card Body -->
+						<div class="card-body">
+							<!-- Input A Name -->
+							<form action="<?php echo site_url('homecontroller/addData') ?>" method="post">
+								<div class="input-group mb-3">
+									<div class="input-group-prepend">
+										<span class="input-group-text bg-primary text-white" id="inputGroup-sizing-default">
+											Name Of Goods</span>
+									</div>
+									<input name="namabarang" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" placeholder="Put Some Text...">
 								</div>
-							</div>
+								<!-- Input A Price -->
+								<div class="input-group mb-3">
+									<div class="input-group-prepend">
+										<span class="input-group-text bg-primary text-white" id="inputGroup-sizing-default" style="width: 140px;">Price</span>
+									</div>
+									<input name="hargabarang" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" placeholder="Put Some Number...">
+								</div>
+								<!-- Input A Description -->
+								<div class="input-group mb-3">
+									<div class="input-group-prepend">
+										<span class="input-group-text bg-primary text-white" id="inputGroup-sizing-default">
+											Item Description</span>
+									</div>
+									<textarea name="deskripsiitem" type="text" class="form-control" aria-label="With textarea" aria-describedby="inputGroup-sizing-default" placeholder="Put Some Text..."></textarea>
+								</div>
+								<!-- Button Save Data -->
+								<button type="submit" class="btn btn-success btn-icon-split">
+									<span class="icon text-white">
+										<i class="fas fa-check"></i>
+									</span>
+									<span class="text">Save A Data</span>
+								</button>
+							</form>
 						</div>
 					</div>
-
 				</div>
 				<!-- /.container-fluid -->
 

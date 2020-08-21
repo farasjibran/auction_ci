@@ -48,6 +48,20 @@ class modelsystem extends CI_Model
 
 
 	// for barang
+	public function simpanBarang()
+	{
+		$this->load->helper('date');
+		$data = array(
+			'id_barang' => "",
+			'nama_barang' => $this->input->post('namabarang'),
+			'harga_awal' => $this->input->post('hargabarang'),
+			'deskripsi_barang' => $this->input->post('deskripsiitem')
+		);
+
+		$this->db->set('tanggal_upload', 'NOW()', FALSE);
+		$this->db->insert('tb_barang', $data);
+		header("Location: " . base_url() . 'index.php/homecontroller/addGoods');
+	}
 	public function get_barang()
 	{
 		$data = $this->db->get('tb_barang');

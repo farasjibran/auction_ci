@@ -91,6 +91,19 @@ class HomeController extends CI_Controller
 		$this->load->view('admin/homeadmin', $data);
 	}
 
+	// add goods view
+	public function addGoods()
+	{
+		$data['title'] = "Auction";
+		$this->load->view('admin/addgoods', $data);
+	}
+
+	// add goods
+	public function addData()
+	{
+		$this->modelsystem->simpanBarang();
+	}
+
 	// 404 password
 	public function error404()
 	{
