@@ -105,15 +105,6 @@ class HomeController extends CI_Controller
 		$this->modelsystem->simpanBarang();
 	}
 
-	// get data barang
-	public function getBarang($id)
-	{
-		$where = array('id_barang' => $id);
-		$data['title'] = "Auction";
-		$data['barang'] = $this->modelsystem->edit_data('tb_barang', $where)->result();
-		$this->load->view('admin/edit', $data);
-	}
-
 	// update barang
 	public function updateData()
 	{

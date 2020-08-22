@@ -187,18 +187,18 @@
 												foreach ($barang as $barangs) {
 											?>
 													<tr>
-														<th scope="row"><?php echo $barangs->id_barang ?></th>
+														<td scope="row"><?php echo $barangs->id_barang ?></td>
 														<td><?php echo $barangs->nama_barang ?></td>
 														<td><?php echo $barangs->tanggal_upload ?></td>
 														<td><?php echo $barangs->harga_awal ?></td>
 														<td><?php echo $barangs->deskripsi_barang ?></td>
 														<td>
-															<a href="<?php echo site_url('homecontroller/getBarang/' . $barangs->id_barang) ?>" class="btn btn-primary btn-icon-split" style="padding-right: 6%;">
+															<button type="button" class="btn btn-primary btn-icon-split editbtn" style="padding-right: 6%;">
 																<span class="icon text-white">
 																	<i class="fas fa-edit"></i>
 																</span>
 																<span class="text">Edit Data</span>
-															</a>
+															</button>
 															<a href="#" class="btn btn-danger btn-icon-split mt-2">
 																<span class="icon text-white">
 																	<i class="fas fa-trash"></i>
@@ -260,6 +260,44 @@
 		</div>
 	</div>
 
+	<!-- Edit Modal -->
+	<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Edit Data</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<form method="post" action="<?php echo base_url('index.php/homecontroller/updateData') ?>">
+					<div class="modal-body">
+						<div class="form-group">
+							<input type=hidden name="idbarang" id="idbarang" class="form-control" placeholder="Enter Name Of Goods">
+						</div>
+						<div class="form-group">
+							<label>Name Of Goods</label>
+							<input type="text" name="namabarang" id="namabarang" class="form-control" placeholder="Enter Name Of Goods">
+						</div>
+						<div class="form-group">
+							<label>Price Of Goods</label>
+							<input type="text" name="hargabarang" id="hargabarang" class="form-control" placeholder="Enter Price Of Goods">
+						</div>
+						<div class="form-group">
+							<label>Description Item</label>
+							<textarea type="text" name="deskripsiitem" id="deskripsibarang" class="form-control"> </textarea>
+						</div>
+
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+						<button type="submit" class="btn btn-primary">Save changes</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
 	<!-- Bootstrap core JavaScript-->
 	<script src="<?php echo base_url('assets/jquery/jquery.min.js') ?>"></script>
 	<script src="<?php echo base_url('assets/bootstrap/js/bootstrap.bundle.min.js') ?>"></script>
@@ -277,5 +315,27 @@
 	<script src="<?php echo base_url('assets/js/datatables-demo.js') ?>"></script>
 
 </body>
+
+<script>
+	$(document).ready(function() {
+		$('.editbtn').on('click', function() {
+
+			$('#editModal').modal('show');
+
+			$tr = $(this).closest('tr');
+
+			var data = $tr.children("td").map(function() {
+				return $(this).text();
+			});
+
+			console.log(data);
+
+			$('#idbarang').val(data[0]);
+			$('#namabarang').val(data[1]);
+			$('#hargabarang').val(data[3]);
+			$('#deskripsibarang').val(data[4]);
+		});
+	});
+</script>
 
 </html>
