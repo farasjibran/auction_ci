@@ -128,6 +128,21 @@ class HomeController extends CI_Controller
 		header("Location: " . base_url() . 'index.php/homecontroller/adminHome');
 	}
 
+	// delete barang
+	public function deleteData()
+	{
+		$idbarangs = $this->input->post('idbarangs');
+
+		$where = array(
+			'id_barang' => $idbarangs
+		);
+
+		echo $where;
+
+		$this->modelsystem->hapus_data($where, 'tb_barang');
+		header("Location: " . base_url() . 'index.php/homecontroller/adminHome');
+	}
+
 	// 404 password
 	public function error404()
 	{

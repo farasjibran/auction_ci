@@ -74,6 +74,12 @@ class modelsystem extends CI_Model
 		$this->db->update($table, $data);
 	}
 
+	function hapus_data($where, $table)
+	{
+		$this->db->where($where);
+		$this->db->delete($table);
+	}
+
 	public function count_barang()
 	{
 		$data = $this->db->get('tb_barang');

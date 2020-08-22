@@ -199,12 +199,12 @@
 																</span>
 																<span class="text">Edit Data</span>
 															</button>
-															<a href="#" class="btn btn-danger btn-icon-split mt-2">
+															<button type="button" class="btn btn-danger btn-icon-split mt-2 deletebtn">
 																<span class="icon text-white">
 																	<i class="fas fa-trash"></i>
 																</span>
 																<span class="text">Delete Data</span>
-															</a>
+															</button>
 														</td>
 													</tr>
 											<?php }
@@ -298,6 +298,30 @@
 		</div>
 	</div>
 
+	<!-- Delete Modal -->
+	<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">Delete Data</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<form action="<?php echo base_url('index.php/homecontroller/deleteData') ?>" method="post">
+					<div class="modal-body">
+						<input type=hidden name="idbarangs" id="idbarangs" class="form-control">
+						<h5>Are You Sure To Delete This Data?</h5>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+						<button type="submit" class="btn btn-danger">Delete Data</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
 	<!-- Bootstrap core JavaScript-->
 	<script src="<?php echo base_url('assets/jquery/jquery.min.js') ?>"></script>
 	<script src="<?php echo base_url('assets/bootstrap/js/bootstrap.bundle.min.js') ?>"></script>
@@ -334,6 +358,21 @@
 			$('#namabarang').val(data[1]);
 			$('#hargabarang').val(data[3]);
 			$('#deskripsibarang').val(data[4]);
+		});
+
+		$('.deletebtn').on('click', function() {
+
+			$('#deleteModal').modal('show');
+
+			$tr = $(this).closest('tr');
+
+			var data = $tr.children("td").map(function() {
+				return $(this).text();
+			});
+
+			console.log(data);
+
+			$('#idbarangs').val(data[0]);
 		});
 	});
 </script>
