@@ -143,21 +143,6 @@ class HomeController extends CI_Controller
 		header("Location: " . base_url() . 'index.php/homecontroller/adminHome');
 	}
 
-	// cetak data
-	public function cetak()
-	{
-		ob_start();
-		$data['barang'] = $this->modelsystem->get_barang();
-		$data['c_barang'] = $this->modelsystem->count_barang();
-		$this->load->view('cetakpdf', $data);
-		// $html = ob_get_contents();
-		// ob_end_clean();
-		// require './assets/html2pdf/autoload.php';
-		// $pdf = new Spipu\Html2Pdf\Html2Pdf('P', 'A4', 'en');
-		// $pdf->writeHTML($html);
-		// $pdf->output('Data_Barang_' . date('d-m-Y') . '.pdf', 'D');
-	}
-
 	// dompdf
 	public function cetakData()
 	{

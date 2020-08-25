@@ -178,6 +178,7 @@
 												<th scope="col">Tanggal Upload</th>
 												<th scope="col">Harga Awal</th>
 												<th scope="col">Deskripsi Barang</th>
+												<th scope="col">Foto Barang</th>
 												<th scope="col">Action</th>
 											</tr>
 										</thead>
@@ -192,6 +193,7 @@
 														<td><?php echo $barangs->tanggal_upload ?></td>
 														<td><?php echo $barangs->harga_awal ?></td>
 														<td><?php echo $barangs->deskripsi_barang ?></td>
+														<td><img style="width: 50%;" src="<?php echo base_url('assets/fotobarang/' . $barangs->foto_barang) ?>"></td>
 														<td>
 															<button type="button" class="btn btn-primary btn-icon-split editbtn" style="padding-right: 6%;">
 																<span class="icon text-white">

@@ -166,7 +166,7 @@
 						<!-- Card Body -->
 						<div class="card-body">
 							<!-- Input A Name -->
-							<form action="<?php echo site_url('homecontroller/addData') ?>" method="post">
+							<form action="<?php echo site_url('homecontroller/addData') ?>" method="post" enctype="multipart/form-data">
 								<div class="input-group mb-3">
 									<div class="input-group-prepend">
 										<span class="input-group-text bg-primary text-white" id="inputGroup-sizing-default">
@@ -184,10 +184,18 @@
 								<!-- Input A Description -->
 								<div class="input-group mb-3">
 									<div class="input-group-prepend">
-										<span class="input-group-text bg-primary text-white" id="inputGroup-sizing-default">
+										<span class="input-group-text bg-primary text-white" id="inputGroup-sizing-default" style="width: 140px;">
 											Item Description</span>
 									</div>
 									<textarea name="deskripsiitem" type="text" class="form-control" aria-label="With textarea" aria-describedby="inputGroup-sizing-default" placeholder="Put Some Text..."></textarea>
+								</div>
+								<!-- Input A Picture -->
+								<div class="input-group mb-3">
+									<div class="input-group-prepend">
+										<span class="input-group-text bg-primary text-white" id="inputGroup-sizing-default" style="width: 140px; padding: 10px;">
+											Picture</span>
+									</div>
+									<input name="foto" type="file" class="form-control" aria-label="With textarea" aria-describedby="inputGroup-sizing-default" style="height: 15%;"></input>
 								</div>
 								<!-- Button Save Data -->
 								<button type="submit" class="btn btn-success btn-icon-split">

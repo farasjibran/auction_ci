@@ -7,15 +7,6 @@ class modelsystem extends CI_Model
 	// for login & register
 	public function simpanData()
 	{
-		// $config['upload_path'] = './assets/';
-		// $config['allowed_types'] = 'jpg|png|gif';
-		// $config['max_size'] = '2048000';
-		// $config['file_name'] = url_title($this->input->post('gambar'));
-		// $filename = $this->upload->file_name;
-		// $this->upload->initialize($config);
-		// $this->upload->do_upload('gambar');
-		// $data = $this->upload->data();
-
 		$data = array(
 			'id_petugas' => "",
 			'nama_petugas' => $this->input->post('username'),
@@ -50,11 +41,29 @@ class modelsystem extends CI_Model
 	// for barang
 	public function simpanBarang()
 	{
+		$foto = $_FILES['foto']['tmp_name'];
+		if ($foto = '') {
+			echo "Tidak Ada Gambar!";
+		} else {
+			$config['upload_path'] = './assets/fotobarang';
+			$config['allowed_types'] = 'jpg|png|gif';
+
+			$this->load->library('upload');
+			$this->upload->initialize($config);
+			if (!$this->upload->do_upload('foto')) {
+				echo "gagal upload";
+				die();
+			} else {
+				$foto = $this->upload->data('file_name');
+			}
+		}
+
 		$data = array(
 			'id_barang' => "",
 			'nama_barang' => $this->input->post('namabarang'),
 			'harga_awal' => $this->input->post('hargabarang'),
-			'deskripsi_barang' => $this->input->post('deskripsiitem')
+			'deskripsi_barang' => $this->input->post('deskripsiitem'),
+			'foto_barang' => $foto
 		);
 
 		$this->db->set('tanggal_upload', 'NOW()', FALSE);
