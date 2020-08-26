@@ -112,11 +112,29 @@ class HomeController extends CI_Controller
 		$namabarangs = $this->input->post('namabarang');
 		$hargabarangs = $this->input->post('hargabarang');
 		$deskripsiitems = $this->input->post('deskripsiitem');
+		$foto = $_FILES['foto']['tmp_name'];
+		if ($foto = '') {
+			echo "Tidak Ada Gambar!";
+		} else {
+			$config['upload_path'] = './assets/fotobarang';
+			$config['allowed_types'] = 'jpg|png|gif';
+
+			$this->load->library('upload');
+			$this->upload->initialize($config);
+			if (!$this->upload->do_upload('foto')) {
+				echo "gagal upload";
+				die();
+			} else {
+				$foto = $this->upload->data('file_name');
+			}
+		}
 
 		$data = array(
 			'nama_barang' => $namabarangs,
 			'harga_awal' => $hargabarangs,
-			'deskripsi_barang' => $deskripsiitems
+			'deskripsi_barang' => $deskripsiitems,
+			'foto_barang' => $foto
+
 		);
 
 		$where = array(
@@ -153,6 +171,7 @@ class HomeController extends CI_Controller
 		$this->pdf->filename = "Laporan-Data-Barang.pdf";
 		$this->pdf->load_view('cetakpdf', $data);
 	}
+
 
 	// 404 password
 	public function error404()

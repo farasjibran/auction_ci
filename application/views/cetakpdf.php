@@ -25,6 +25,7 @@
 					<th>Tanggal Upload</th>
 					<th>Harga Awal</th>
 					<th>Deskripsi Barang</th>
+					<th>Foto Barang</th>
 				</tr>
 				<?php
 				if ($c_barang > 0) {
@@ -36,6 +37,7 @@
 							<td><?php echo $barangs->tanggal_upload ?></td>
 							<td><?php echo $barangs->harga_awal ?></td>
 							<td><?php echo $barangs->deskripsi_barang ?></td>
+							<td><?php echo $barangs->foto_barang ?></td>
 						</tr>
 				<?php }
 				} else {

@@ -272,7 +272,7 @@
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
-				<form method="post" action="<?php echo base_url('index.php/homecontroller/updateData') ?>">
+				<form method="post" action="<?php echo base_url('index.php/homecontroller/updateData') ?>" enctype="multipart/form-data">
 					<div class="modal-body">
 						<div class="form-group">
 							<input type=hidden name="idbarang" id="idbarang" class="form-control" placeholder="Enter Name Of Goods">
@@ -288,6 +288,10 @@
 						<div class="form-group">
 							<label>Description Item</label>
 							<textarea type="text" name="deskripsiitem" id="deskripsibarang" class="form-control"> </textarea>
+						</div>
+						<div class="form-group">
+							<label>Picture</label>
+							<input type="file" name="foto" id="foto" class="form-control">
 						</div>
 
 					</div>
