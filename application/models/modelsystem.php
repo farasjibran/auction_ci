@@ -32,9 +32,10 @@ class modelsystem extends CI_Model
 		return $data->num_rows();
 	}
 
-	public function cek_login($table, $where)
+	public function cek_login($user)
 	{
-		return $this->db->get_where($table, $where);
+		$datauser = $this->db->get_where('tb_petugas', $user);
+		return $datauser;
 	}
 
 

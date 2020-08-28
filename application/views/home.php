@@ -41,7 +41,7 @@
 
 		.slogan {
 			margin-top: 2%;
-			margin-left: 16%;
+			margin-left: 18%;
 		}
 
 		.kataslogan {

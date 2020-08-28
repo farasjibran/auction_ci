@@ -17,6 +17,12 @@ class HomeController extends CI_Controller
 		$this->load->view('home', $title);
 	}
 
+	public function homeUser()
+	{
+		$title['title'] = "Auction";
+		$this->load->view('users/homeuser', $title);
+	}
+
 	// view login
 	public function login()
 	{
@@ -56,20 +62,37 @@ class HomeController extends CI_Controller
 			'username' => $usernames,
 			'password' => $passwords
 		);
-		$cek = $this->modelsystem->cek_login("tb_petugas", $where)->num_rows();
+		$cek = $this->modelsystem->cek_login($where)->num_rows();
 
 		if ($cek > 0) {
-			$data_session = array(
-				'usernama' => $usernames,
-				'status' => 'login'
-			);
-
-			$this->session->set_userdata($data_session);
-
-			if ($this->session->userdata('status') == 'login') {
-				header("Location: " . base_url() . 'index.php/homecontroller/adminhome');
+			$idlevel = $this->modelsystem->cek_login($where)->row(0)->id_level;
+			print_r($idlevel);
+			if ($idlevel == '1' || $idlevel == '2') {
+				$idlevel = $this->modelsystem->cek_login($where)->row(0)->id_level;
+				$data_session = array(
+					'id_level' => $idlevel,
+					'usernama' => $usernames,
+					'status' => 'login'
+				);
+				$this->session->set_userdata($data_session);
+				if ($this->session->userdata('status') == 'login') {
+					header("Location: " . base_url() . 'index.php/homecontroller/adminHome');
+				} else {
+					echo "Username Atau Password Anda Salah!";
+				}
 			} else {
-				echo "Username Atau Password Anda Salah!";
+				$idlevel = $this->modelsystem->cek_login($where)->row(0)->id_level;
+				$data_session = array(
+					'id_level' => $idlevel,
+					'usernama' => $usernames,
+					'status' => 'login'
+				);
+				$this->session->set_userdata($data_session);
+				if ($this->session->userdata('status') == 'login') {
+					header("Location: " . base_url() . 'index.php/homecontroller/homeUser');
+				} else {
+					echo "Username Atau Password Anda Salah!";
+				}
 			}
 		} else {
 			header("Location: " . base_url() . 'index.php/homecontroller/error404');
