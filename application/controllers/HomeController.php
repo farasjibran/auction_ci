@@ -1,5 +1,4 @@
 <?php
-
 defined('BASEPATH') or exit('No direct script access allowed');
 
 class HomeController extends CI_Controller
@@ -19,8 +18,10 @@ class HomeController extends CI_Controller
 
 	public function homeUser()
 	{
-		$title['title'] = "Auction";
-		$this->load->view('users/homeuser', $title);
+		$data['title'] = "Auction";
+		$data['barang'] = $this->modelsystem->get_barang();
+		$data['c_barang'] = $this->modelsystem->count_barang();
+		$this->load->view('users/homeuser', $data);
 	}
 
 	// view login

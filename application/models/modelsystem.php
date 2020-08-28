@@ -78,6 +78,12 @@ class modelsystem extends CI_Model
 		return $data->result();
 	}
 
+	public function count_barang()
+	{
+		$data = $this->db->get('tb_barang');
+		return $data->num_rows();
+	}
+
 	public function update_data($where, $data, $table)
 	{
 		$this->db->where($where);
@@ -88,11 +94,5 @@ class modelsystem extends CI_Model
 	{
 		$this->db->where($where);
 		$this->db->delete($table);
-	}
-
-	public function count_barang()
-	{
-		$data = $this->db->get('tb_barang');
-		return $data->num_rows();
 	}
 }
