@@ -28,6 +28,7 @@
 
 		.kontenbarang {
 			margin-top: 15%;
+			margin-right: 10%;
 		}
 	</style>
 </head>
@@ -48,7 +49,7 @@
 				<a class="nav-link text-white ml-3" href="#">Catalogue</a>
 			</div>
 		</div>
-		<a href="<?php echo site_url('homecontroller/logoutUser') ?>" style="margin-left: 197%;">
+		<a href="<?php echo site_url('homecontroller/logoutUser') ?>" style="margin-left: 188%;">
 			<button class="btn btn-secondary"><b>Logout</b></button>
 		</a>
 	</nav>
@@ -60,29 +61,32 @@
 	</div>
 
 	<!-- barang -->
-	<div class="container kontenbarang d-flex justify-content-around">
-		<?php
-		if ($c_barang > 0) {
-			foreach ($barang as $barangs) {
-		?>
-				<div class="card" style="width: 18rem;">
-					<div class="card-img">
-						<img style="height: %;" src="<?php echo base_url('assets/fotobarang/' . $barangs->foto_barang) ?>" class="card-img-top" alt="...">
+	<div class="container kontenbarang justify-content-around mb-5">
+		<div class="row">
+			<?php
+			if ($c_barang > 0) {
+				foreach ($barang as $barangs) {
+			?>
+					<div class="col mt-5">
+						<div class="card" style="width: 15rem;">
+							<div class="card-img">
+								<img style="height: %;" src="<?php echo base_url('assets/fotobarang/' . $barangs->foto_barang) ?>" class="card-img-top" alt="...">
+							</div>
+							<div class="card-body" style="padding-bottom: 20px;">
+								<h5 class="card-title"><?php echo $barangs->nama_barang ?></h5>
+								<p class="card-text"><?php echo $barangs->deskripsi_barang ?></p>
+								<a href="#" class="btn btn-primary">Read More...</a>
+							</div>
+						</div>
 					</div>
-					<div class="card-body">
-						<h5 class="card-title"><?php echo $barangs->nama_barang ?></h5>
-						<p class="card-text"><?php echo $barangs->deskripsi_barang ?></p>
-						<a href="#" class="btn btn-primary">Go somewhere</a>
-					</div>
-				</div>
-		<?php
+			<?php
+				}
+			} else {
+				echo "Data Tidak Ditemukan";
 			}
-		} else {
-			echo "Data Tidak Ditemukan";
-		}
-		?>
+			?>
+		</div>
 	</div>
-
 </body>
 
 </html>

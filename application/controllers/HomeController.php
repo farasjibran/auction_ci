@@ -18,17 +18,35 @@ class HomeController extends CI_Controller
 
 	public function homeUser()
 	{
-		$data['title'] = "Auction";
-		$data['barang'] = $this->modelsystem->get_barang();
-		$data['c_barang'] = $this->modelsystem->count_barang();
-		$this->load->view('users/homeuser', $data);
+		if ($this->session->userdata('id_level') == 3) {
+			$data['title'] = "Auction";
+			$data['barang'] = $this->modelsystem->get_barang();
+			$data['c_barang'] = $this->modelsystem->count_barang();
+			$this->load->view('users/homeuser', $data);
+		} else {
+			echo 'this is user view';
+		}
 	}
 
 	// view login
 	public function login()
 	{
-		$title['title'] = "Auction";
-		$this->load->view('login', $title);
+		if ($this->session->userdata('status') == "login") {
+			if ($this->session->userdata('id_level') == 3) {
+				$data['title'] = "Auction";
+				$data['barang'] = $this->modelsystem->get_barang();
+				$data['c_barang'] = $this->modelsystem->count_barang();
+				$this->load->view('users/homeuser', $data);
+			} else if ($this->session->userdata('id_level') == 1 && 2) {
+				$data['title'] = "Auction";
+				$data['barang'] = $this->modelsystem->get_barang();
+				$data['c_barang'] = $this->modelsystem->count_barang();
+				$this->load->view('admin/homeadmin', $data);
+			}
+		} else {
+			$title['title'] = "Auction";
+			$this->load->view('login', $title);
+		}
 	}
 
 	// view register
@@ -47,11 +65,15 @@ class HomeController extends CI_Controller
 	// load data
 	public function datauser()
 	{
-		$data['title'] = "Auction";
-		$data['user'] = $this->modelsystem->get_user();
-		$data['c_user'] = $this->modelsystem->count_user();
+		if ($this->session->userdata('id_level') == 3) {
+			$data['title'] = "Auction";
+			$data['user'] = $this->modelsystem->get_user();
+			$data['c_user'] = $this->modelsystem->count_user();
 
-		$this->load->view('test', $data);
+			$this->load->view('test', $data);
+		} else {
+			echo 'this is user view';
+		}
 	}
 
 	// login user
@@ -110,10 +132,14 @@ class HomeController extends CI_Controller
 	// admin home
 	public function adminHome()
 	{
-		$data['title'] = "Auction";
-		$data['barang'] = $this->modelsystem->get_barang();
-		$data['c_barang'] = $this->modelsystem->count_barang();
-		$this->load->view('admin/homeadmin', $data);
+		if ($this->session->userdata('id_level') == 1 && 2) {
+			$data['title'] = "Auction";
+			$data['barang'] = $this->modelsystem->get_barang();
+			$data['c_barang'] = $this->modelsystem->count_barang();
+			$this->load->view('admin/homeadmin', $data);
+		} else {
+			echo 'this is user view';
+		}
 	}
 
 	// add goods view
