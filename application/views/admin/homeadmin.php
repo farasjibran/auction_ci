@@ -68,15 +68,15 @@
 				</div>
 			</li>
 
-			<!-- Divider -->
-			<hr class="sidebar-divider">
+			<!-- Divider
+			<hr class="sidebar-divider"> -->
 
-			<!-- Heading -->
+			<!-- Heading
 			<div class="sidebar-heading">
 				Addons
-			</div>
+			</div> -->
 
-			<!-- Nav Item - Pages Collapse Menu -->
+			<!-- Nav Item - Pages Collapse Menu
 			<li class="nav-item">
 				<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
 					<i class="fas fa-fw fa-folder"></i>
@@ -94,21 +94,21 @@
 						<a class="collapse-item" href="blank.html">Blank Page</a>
 					</div>
 				</div>
-			</li>
+			</li> -->
 
-			<!-- Nav Item - Charts -->
+			<!-- Nav Item - Charts
 			<li class="nav-item">
 				<a class="nav-link" href="charts.html">
 					<i class="fas fa-fw fa-chart-area"></i>
 					<span>Charts</span></a>
-			</li>
+			</li> -->
 
-			<!-- Nav Item - Tables -->
+			<!-- Nav Item - Tables
 			<li class="nav-item">
 				<a class="nav-link" href="tables.html">
 					<i class="fas fa-fw fa-table"></i>
 					<span>Tables</span></a>
-			</li>
+			</li> -->
 
 		</ul>
 		<!-- End of Sidebar -->
@@ -148,13 +148,13 @@
 				</nav>
 				<!-- End of Topbar -->
 
-				<!-- Begin Page Content -->
+				<!-- Begin Page Content -->`
 				<div class="container-fluid">
 
 					<!-- Page Heading -->
 					<div class="d-sm-flex align-items-center justify-content-between mb-4">
 						<h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-						<a href="<?php echo base_url('index.php/homecontroller/cetakData') ?>" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white"></i> Generate Report</a>
+						<a href="#" data-toggle="modal" data-target="#generateModal" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white"></i> Generate Report</a>
 					</div>
 
 					<!-- Content Row -->
@@ -257,6 +257,34 @@
 				<div class="modal-footer">
 					<button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
 					<a class="btn btn-primary" href="<?php echo site_url('homecontroller/logoutUser') ?>">Logout</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Generate Modal-->
+	<div class="modal fade" id="generateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Generate Report</h5>
+					<button class="close" type="button" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">×</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					Select To Generate Report :
+					<div class="row mt-4">
+						<div class="col" style="margin-right: -50%;">
+							<a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" href="<?php echo site_url('homecontroller/cetakData') ?>"><i class="fas fa-file fa-sm text-white" style="margin-right: 5px;"></i> Generate Pdf</a>
+						</div>
+						<div class="col">
+							<a class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm" href="<?php echo site_url('homecontroller/cetakExcel') ?>"><i class="fas fa-table fa-sm text-white" style="margin-right: 5px;"></i> Generate Excel</a>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
 				</div>
 			</div>
 		</div>

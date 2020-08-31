@@ -37,7 +37,7 @@
 							<td><?php echo $barangs->tanggal_upload ?></td>
 							<td><?php echo $barangs->harga_awal ?></td>
 							<td><?php echo $barangs->deskripsi_barang ?></td>
-							<td><?php echo $barangs->foto_barang ?></td>
+							<td align="center"><img style="width: 250%;" src="<?php echo base_url('assets/fotobarang/') . $barangs->foto_barang ?>"></td>
 						</tr>
 				<?php }
 				} else {
