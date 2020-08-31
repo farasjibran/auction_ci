@@ -20,6 +20,22 @@ class modelsystem extends CI_Model
 		header("Location: " . base_url() . 'index.php/homecontroller/login');
 	}
 
+	// register
+	public function simpanPetugas()
+	{
+		$data = array(
+			'id_petugas' => "",
+			'nama_petugas' => $this->input->post('namapetugas'),
+			'username' => $this->input->post('username'),
+			'password' => $this->input->post('password'),
+			'id_level' => $this->input->post('idlevel')
+		);
+
+
+		$this->db->insert('tb_petugas', $data);
+		header("Location: " . base_url() . 'index.php/homecontroller/addOfficer');
+	}
+
 	public function get_user()
 	{
 		$data = $this->db->get('tb_petugas');
@@ -37,7 +53,6 @@ class modelsystem extends CI_Model
 		$datauser = $this->db->get_where('tb_petugas', $user);
 		return $datauser;
 	}
-
 
 	// for barang
 	public function simpanBarang()
@@ -67,7 +82,7 @@ class modelsystem extends CI_Model
 			'foto_barang' => $foto
 		);
 
-		$this->db->set('tanggal_upload', 'NOW()', FALSE);
+		// $this->db->set('tanggal_upload', 'NOW()', FALSE);
 		$this->db->insert('tb_barang', $data);
 		header("Location: " . base_url() . 'index.php/homecontroller/addGoods');
 	}

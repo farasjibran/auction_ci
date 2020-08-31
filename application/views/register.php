@@ -103,7 +103,6 @@
 					<select class="custom-select drpdw" name="role">
 						<option selected>Select Role</option>
 						<option value="1">Administrator</option>
-						<option value="2">Petugas</option>
 						<option value="3">User</option>
 					</select>
 
