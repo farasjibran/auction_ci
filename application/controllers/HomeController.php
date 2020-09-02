@@ -93,8 +93,10 @@ class HomeController extends CI_Controller
 			print_r($idlevel);
 			if ($idlevel == '1' || $idlevel == '2') {
 				$idlevel = $this->modelsystem->cek_login($where)->row(0)->id_level;
+				$namauser = $this->modelsystem->cek_login($where)->row(0)->nama_petugas;
 				$data_session = array(
 					'id_level' => $idlevel,
+					'nama_user' => $namauser,
 					'usernama' => $usernames,
 					'status' => 'login'
 				);
@@ -133,7 +135,7 @@ class HomeController extends CI_Controller
 	// admin home
 	public function adminHome()
 	{
-		if ($this->session->userdata('id_level') == 1 && 2) {
+		if ($this->session->userdata('id_level') == 1 || 2) {
 			$data['title'] = "Auction";
 			$data['barang'] = $this->modelsystem->get_barang();
 			$data['c_barang'] = $this->modelsystem->count_barang();
@@ -242,7 +244,18 @@ class HomeController extends CI_Controller
 		$this->load->view('officer/addofficer', $data);
 	}
 
-
+	// view officer view
+	public function viewOfficer()
+	{
+		if ($this->session->userdata('id_level') == 1 || 2) {
+			$data['users'] = $this->modelsystem->get_user();
+			$data['c_users'] = $this->modelsystem->count_user();
+			$data['title'] = "Auction";
+			$this->load->view('officer/viewofficer', $data);
+		} else {
+			echo 'this is user view';
+		}
+	}
 
 	// 404 password
 	public function error404()

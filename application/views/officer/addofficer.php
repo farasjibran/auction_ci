@@ -85,7 +85,7 @@
 				<div id="collapseThree" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
 						<h6 class="collapse-header">Action For Officer</h6>
-						<a class="collapse-item" href="<?php echo site_url('homecontroller/addGoods') ?>">View Officer</a>
+						<a class="collapse-item" href="<?php echo site_url('homecontroller/viewOfficer') ?>">View Officer</a>
 						<a class="collapse-item active" href="<?php echo site_url('homecontroller/addOfficer') ?>">Add Officer</a>
 					</div>
 				</div>

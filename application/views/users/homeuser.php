@@ -27,8 +27,11 @@
 		}
 
 		.kontenbarang {
-			margin-top: 15%;
 			margin-right: 10%;
+		}
+
+		.judul {
+			margin-top: 11%;
 		}
 	</style>
 </head>
@@ -60,6 +63,20 @@
 		<h1 class="setuser text-white">Hi, <?php echo strtoupper($this->session->userdata('usernama')); ?></h1>
 	</div>
 
+	<div class="container judul">
+		<div class="row">
+			<div class="col-md-3">
+				<h2>Items <b>In</b> Catalog</h2>
+			</div>
+			<div class="col-md-3" style="margin-top: 5px;">
+				<hr class="sidebar-divider" style="border-top: 2px solid black;">
+			</div>
+			<div class="col-md-3" style="margin-top: 5px;">
+				<a href="">Show More...</a>
+			</div>
+		</div>
+	</div>
+
 	<!-- barang -->
 	<div class="container kontenbarang justify-content-around mb-5">
 		<div class="row">
@@ -67,14 +84,14 @@
 			if ($c_barang > 0) {
 				foreach ($barang as $barangs) {
 			?>
-					<div class="col mt-5">
-						<div class="card" style="width: 15rem;">
+					<div class="col-md-4  mt-5">
+						<div class="card" style="width: 18rem;">
 							<div class="card-img">
-								<img style="height: %;" src="<?php echo base_url('assets/fotobarang/' . $barangs->foto_barang) ?>" class="card-img-top" alt="...">
+								<img style="height: %;" src="<?php echo base_url('assets/fotobarang/' . $barangs->foto_barang) ?>" class="card-img-top">
 							</div>
-							<div class="card-body" style="padding-bottom: 20px;">
+							<div class="card-body" style="padding-bottom: px;">
 								<h5 class="card-title"><?php echo $barangs->nama_barang ?></h5>
-								<p class="card-text"><?php echo $barangs->deskripsi_barang ?></p>
+								<p class="card-text"><?php echo substr($barangs->deskripsi_barang, 0, 94) ?>...</p>
 								<a href="#" class="btn btn-primary">Read More...</a>
 							</div>
 						</div>

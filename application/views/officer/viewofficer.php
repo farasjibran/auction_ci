@@ -40,7 +40,7 @@
 			<hr class="sidebar-divider my-0">
 
 			<!-- Nav Item - Dashboard -->
-			<li class="nav-item active">
+			<li class="nav-item">
 				<a class="nav-link" href="<?php echo site_url('homecontroller/adminHome') ?>">
 					<i class="fas fa-fw fa-tachometer-alt"></i>
 					<span>Dashboard</span></a>
@@ -77,15 +77,15 @@
 			</div>
 
 			<!-- Nav Item - Pages Collapse Menu -->
-			<li class="nav-item">
+			<li class="nav-item active">
 				<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
 					<i class="fas fa-fw fa-user"></i>
 					<span>Action Officer</span>
 				</a>
-				<div id="collapseThree" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+				<div id="collapseThree" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
 						<h6 class="collapse-header">Action For Officer</h6>
-						<a class="collapse-item" href="<?php echo site_url('homecontroller/addGoods') ?>">View Officer</a>
+						<a class="collapse-item active" href="<?php echo site_url('homecontroller/viewOfficer') ?>">View Officer</a>
 						<a class="collapse-item" href="<?php echo site_url('homecontroller/addOfficer') ?>">Add Officer</a>
 					</div>
 				</div>
@@ -134,6 +134,7 @@
 
 					<!-- Page Heading -->
 					<div class="d-sm-flex align-items-center justify-content-between mb-4">
+						<h1 class="h3 mb-0 text-gray-800">Users</h1>
 						<a href="#" data-toggle="modal" data-target="#generateModal" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white"></i> Generate Report</a>
 					</div>
 
@@ -153,43 +154,43 @@
 									<table class="table table-bordered" cellspacing="0" width="100%" id="dataTable">
 										<thead class="bg-primary text-white">
 											<tr>
-												<th scope="col">Id Barang</th>
-												<th scope="col">Nama Barang</th>
-												<th scope="col">Tanggal Upload</th>
-												<th scope="col">Harga Awal</th>
-												<th scope="col">Deskripsi Barang</th>
-												<th scope="col">Foto Barang</th>
+												<th scope="col">Id Petugas</th>
+												<th scope="col">Nama Petugas</th>
+												<th scope="col">Username</th>
+												<th scope="col">Password</th>
+												<th scope="col">id_level</th>
 												<th scope="col">Action</th>
 											</tr>
 										</thead>
 										<tbody>
 											<?php
-											if ($c_barang > 0) {
-												foreach ($barang as $barangs) {
+											if ($c_users > 0) {
+												foreach ($users as $data) {
+													if ($data->id_level == 1 || $data->id_level == 2) {
 											?>
-													<tr>
-														<td scope="row"><?php echo $barangs->id_barang ?></td>
-														<td><?php echo $barangs->nama_barang ?></td>
-														<td><?php echo $barangs->tanggal_upload ?></td>
-														<td><?php echo $barangs->harga_awal ?></td>
-														<td><?php echo $barangs->deskripsi_barang ?></td>
-														<td><img style="width: 50%;" src="<?php echo base_url('assets/fotobarang/' . $barangs->foto_barang) ?>"></td>
-														<td>
-															<button type="button" class="btn btn-primary btn-icon-split editbtn" style="padding-right: 6%;">
-																<span class="icon text-white">
-																	<i class="fas fa-edit"></i>
-																</span>
-																<span class="text">Edit Data</span>
-															</button>
-															<button type="button" class="btn btn-danger btn-icon-split mt-2 deletebtn">
-																<span class="icon text-white">
-																	<i class="fas fa-trash"></i>
-																</span>
-																<span class="text">Delete Data</span>
-															</button>
-														</td>
-													</tr>
+														<tr>
+															<td scope="row"><?php echo $data->id_petugas ?></td>
+															<td><?php echo $data->nama_petugas ?></td>
+															<td><?php echo $data->username ?></td>
+															<td><?php echo $data->password ?></td>
+															<td><?php echo $data->id_level ?></td>
+															<td>
+																<button type="button" class="btn btn-primary btn-icon-split editbtn" style="padding-right: 6%;">
+																	<span class="icon text-white">
+																		<i class="fas fa-edit"></i>
+																	</span>
+																	<span class="text">Edit Data</span>
+																</button>
+																<button type="button" class="btn btn-danger btn-icon-split deletebtn">
+																	<span class="icon text-white">
+																		<i class="fas fa-trash"></i>
+																	</span>
+																	<span class="text">Delete Data</span>
+																</button>
+															</td>
+														</tr>
 											<?php }
+												}
 											} else {
 												echo "Data Tidak Ditemukan";
 											}
