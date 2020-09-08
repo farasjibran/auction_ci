@@ -9,7 +9,7 @@ class modelsystem extends CI_Model
 	{
 		$data = array(
 			'id_petugas' => "",
-			'nama_petugas' => $this->input->post('username'),
+			'nama_petugas' => $this->input->post('namapetugas'),
 			'username' => $this->input->post('username'),
 			'password' => $this->input->post('password'),
 			'id_level' => $this->input->post('role')
@@ -17,7 +17,7 @@ class modelsystem extends CI_Model
 
 
 		$this->db->insert('tb_petugas', $data);
-		header("Location: " . base_url() . 'index.php/homecontroller/login');
+		header("Location: " . base_url() . 'index.php/homecontroller/addOfficer');
 	}
 
 	// register
@@ -25,7 +25,7 @@ class modelsystem extends CI_Model
 	{
 		$data = array(
 			'id_petugas' => "",
-			'nama_petugas' => $this->input->post('namapetugas'),
+			'nama_petugas' => $this->input->post('namauser'),
 			'username' => $this->input->post('username'),
 			'password' => $this->input->post('password'),
 			'id_level' => $this->input->post('idlevel')
@@ -33,7 +33,7 @@ class modelsystem extends CI_Model
 
 
 		$this->db->insert('tb_petugas', $data);
-		header("Location: " . base_url() . 'index.php/homecontroller/addOfficer');
+		header("Location: " . base_url() . 'index.php/homecontroller/login');
 	}
 
 	public function get_user()
@@ -109,5 +109,25 @@ class modelsystem extends CI_Model
 	{
 		$this->db->where($where);
 		$this->db->delete($table);
+	}
+
+	public function dataAdmin()
+	{
+		$this->db->where('id_level', '1');
+		return $this->db->count_all_results('tb_petugas');
+	}
+
+	public function dataPetugas()
+	{
+		$this->db->where('id_level', '2');
+		return $this->db->count_all_results('tb_petugas');
+	}
+
+	public function dataBarang()
+	{
+		// $query = $this->db->query("SELECT COUNT(id_barang) FROM tb_barang");
+		// return $query->result();
+		$data = $this->db->get('tb_barang');
+		return $data->num_rows();
 	}
 }

@@ -63,6 +63,7 @@
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
 						<h6 class="collapse-header">Action For Goods</h6>
+						<a class="collapse-item" href="<?php echo site_url('homecontroller/viewGoods') ?>">View Goods</a>
 						<a class="collapse-item" href="<?php echo site_url('homecontroller/addGoods') ?>">Add Goods</a>
 					</div>
 				</div>
@@ -73,7 +74,7 @@
 
 			<!-- Heading -->
 			<div class="sidebar-heading">
-				Officer
+				user data
 			</div>
 
 			<!-- Nav Item - Pages Collapse Menu -->
@@ -89,6 +90,13 @@
 						<a class="collapse-item" href="<?php echo site_url('homecontroller/addOfficer') ?>">Add Officer</a>
 					</div>
 				</div>
+			</li>
+
+			<!-- Nav Item - Charts -->
+			<li class="nav-item">
+				<a class="nav-link" href="charts.html">
+					<i class="fas fa-fw fa-chart-area"></i>
+					<span>Charts</span></a>
 			</li>
 
 		</ul>
@@ -130,79 +138,83 @@
 				<!-- End of Topbar -->
 
 				<!-- Begin Page Content -->`
-				<div class="container-fluid">
+				<div class="container-fluid" style="margin-top: -20px;">
 
 					<!-- Page Heading -->
 					<div class="d-sm-flex align-items-center justify-content-between mb-4">
 						<h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-						<a style="margin-left: 68%;" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" href="<?php echo site_url('homecontroller/cetakData') ?>"><i class="fas fa-file fa-sm text-white" style="margin-right: 5px;"></i> Generate Pdf</a>
-						<a class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm" href="<?php echo site_url('homecontroller/cetakExcel') ?>"><i class="fas fa-table fa-sm text-white" style="margin-right: 5px;"></i> Generate Excel</a>
+						<!-- <a style="margin-left: 68%;" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" href="<?php echo site_url('homecontroller/cetakData') ?>"><i class="fas fa-file fa-sm text-white" style="margin-right: 5px;"></i> Generate Pdf</a>
+						<a class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm" href="<?php echo site_url('homecontroller/cetakExcel') ?>"><i class="fas fa-table fa-sm text-white" style="margin-right: 5px;"></i> Generate Excel</a> -->
 					</div>
 
 					<!-- Content Row -->
 
-					<div class="row-fluid">
+					<div class="row">
 
-						<!-- Area Data -->
-						<div class="card shadow mb-4">
-							<!-- Card Header - Dropdown -->
-							<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-								<h6 class="m-0 font-weight-bold text-primary">Data Barang</h6>
-							</div>
-							<!-- Card Body -->
-							<div class="card-body">
-								<div class="table-responsive">
-									<table class="table table-bordered" cellspacing="0" width="100%" id="dataTable">
-										<thead class="bg-primary text-white">
-											<tr>
-												<th scope="col">Id Barang</th>
-												<th scope="col">Nama Barang</th>
-												<th scope="col">Tanggal Upload</th>
-												<th scope="col">Harga Awal</th>
-												<th scope="col">Deskripsi Barang</th>
-												<th scope="col">Foto Barang</th>
-												<th scope="col">Action</th>
-											</tr>
-										</thead>
-										<tbody>
-											<?php
-											if ($c_barang > 0) {
-												foreach ($barang as $barangs) {
-											?>
-													<tr>
-														<td scope="row"><?php echo $barangs->id_barang ?></td>
-														<td><?php echo $barangs->nama_barang ?></td>
-														<td><?php echo $barangs->tanggal_upload ?></td>
-														<td><?php echo $barangs->harga_awal ?></td>
-														<td><?php echo $barangs->deskripsi_barang ?></td>
-														<td><img style="width: 50%;" src="<?php echo base_url('assets/fotobarang/' . $barangs->foto_barang) ?>"></td>
-														<td>
-															<button type="button" class="btn btn-primary btn-icon-split editbtn" style="padding-right: 6%;">
-																<span class="icon text-white">
-																	<i class="fas fa-edit"></i>
-																</span>
-																<span class="text">Edit Data</span>
-															</button>
-															<button type="button" class="btn btn-danger btn-icon-split mt-2 deletebtn">
-																<span class="icon text-white">
-																	<i class="fas fa-trash"></i>
-																</span>
-																<span class="text">Delete Data</span>
-															</button>
-														</td>
-													</tr>
-											<?php }
-											} else {
-												echo "Data Tidak Ditemukan";
-											}
-											?>
-										</tbody>
-									</table>
+						<!-- Admin -->
+						<div class="col-xl-3 col-md-6 mb-4">
+							<div class="card border-left-primary shadow h-100 py-2">
+								<div class="card-body">
+									<div class="row no-gutters align-items-center">
+										<div class="col mr-2">
+											<div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Admin</div>
+											<div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $totaladmn ?></div>
+										</div>
+										<div class="col-auto">
+											<i class="fas fa-user-cog fa-2x text-gray-300"></i>
+										</div>
+									</div>
 								</div>
 							</div>
 						</div>
+
+						<!-- Officer -->
+						<div class="col-xl-3 col-md-6 mb-4">
+							<div class="card border-left-success shadow h-100 py-2">
+								<div class="card-body">
+									<div class="row no-gutters align-items-center">
+										<div class="col mr-2">
+											<div class="text-xs font-weight-bold text-success text-uppercase mb-1">Officer</div>
+											<div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $totaluser ?></div>
+										</div>
+										<div class="col-auto">
+											<i class="fas fa-user fa-2x text-gray-300"></i>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<!-- Barang -->
+						<div class="col-xl-3 col-md-6 mb-4">
+							<div class="card border-left-danger shadow h-100 py-2">
+								<div class="card-body">
+									<div class="row no-gutters align-items-center">
+										<div class="col mr-2">
+											<div class="text-xs font-weight-bold text-danger text-uppercase mb-1">Items</div>
+											<div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $totalbarang ?></div>
+										</div>
+										<div class="col-auto">
+											<i class="fas fa-boxes fa-2x text-gray-300"></i>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+
 					</div>
 
+					<!-- Area Data -->
+					<div class="card shadow mb-4">
+						<!-- <div class="embed-responsive embed-responsive-21by9">
+								<iframe src="https://www.youtube.com/embed/gTjkDsNOgkg?&autoplay=1" frameborder="0" class="embed-responsive-item" encrypted-media" allowfullscreen></iframe>
+							</div> -->
+						<!-- Card Header - Dropdown -->
+						<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+							<h6 class="m-0 font-weight-bold text-primary">Add Data</h6>
+						</div>
+					</div>
 				</div>
 				<!-- /.container-fluid -->
 
@@ -244,100 +256,6 @@
 		</div>
 	</div>
 
-	<!-- Generate Modal-->
-	<div class="modal fade" id="generateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">Generate Report</h5>
-					<button class="close" type="button" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">×</span>
-					</button>
-				</div>
-				<div class="modal-body">
-					Select To Generate Report :
-					<div class="row mt-4">
-						<div class="col" style="margin-right: -50%;">
-
-						</div>
-						<div class="col">
-
-						</div>
-					</div>
-				</div>
-				<div class="modal-footer">
-					<button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<!-- Edit Modal -->
-	<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">Edit Data</h5>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				<form method="post" action="<?php echo base_url('index.php/homecontroller/updateData') ?>" enctype="multipart/form-data">
-					<div class="modal-body">
-						<div class="form-group">
-							<input type=hidden name="idbarang" id="idbarang" class="form-control" placeholder="Enter Name Of Goods">
-						</div>
-						<div class="form-group">
-							<label>Name Of Goods</label>
-							<input type="text" name="namabarang" id="namabarang" class="form-control" placeholder="Enter Name Of Goods">
-						</div>
-						<div class="form-group">
-							<label>Price Of Goods</label>
-							<input type="text" name="hargabarang" id="hargabarang" class="form-control" placeholder="Enter Price Of Goods">
-						</div>
-						<div class="form-group">
-							<label>Description Item</label>
-							<textarea type="text" name="deskripsiitem" id="deskripsibarang" class="form-control"> </textarea>
-						</div>
-						<div class="form-group">
-							<label>Picture</label>
-							<input type="file" name="foto" id="foto" class="form-control">
-						</div>
-
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-						<button type="submit" class="btn btn-primary">Save changes</button>
-					</div>
-				</form>
-			</div>
-		</div>
-	</div>
-
-	<!-- Delete Modal -->
-	<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-hidden="true">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title">Delete Data</h5>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				<form action="<?php echo base_url('index.php/homecontroller/deleteData') ?>" method="post">
-					<div class="modal-body">
-						<input type=hidden name="idbarangs" id="idbarangs" class="form-control">
-						<h5>Are You Sure To Delete This Data?</h5>
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-						<button type="submit" class="btn btn-danger">Delete Data</button>
-					</div>
-				</form>
-			</div>
-		</div>
-	</div>
-
 	<!-- Bootstrap core JavaScript-->
 	<script src="<?php echo base_url('assets/jquery/jquery.min.js') ?>"></script>
 	<script src="<?php echo base_url('assets/bootstrap/js/bootstrap.bundle.min.js') ?>"></script>
@@ -355,42 +273,5 @@
 	<script src="<?php echo base_url('assets/js/datatables-demo.js') ?>"></script>
 
 </body>
-
-<script>
-	$(document).ready(function() {
-		$('.editbtn').on('click', function() {
-
-			$('#editModal').modal('show');
-
-			$tr = $(this).closest('tr');
-
-			var data = $tr.children("td").map(function() {
-				return $(this).text();
-			});
-
-			console.log(data);
-
-			$('#idbarang').val(data[0]);
-			$('#namabarang').val(data[1]);
-			$('#hargabarang').val(data[3]);
-			$('#deskripsibarang').val(data[4]);
-		});
-
-		$('.deletebtn').on('click', function() {
-
-			$('#deleteModal').modal('show');
-
-			$tr = $(this).closest('tr');
-
-			var data = $tr.children("td").map(function() {
-				return $(this).text();
-			});
-
-			console.log(data);
-
-			$('#idbarangs').val(data[0]);
-		});
-	});
-</script>
 
 </html>

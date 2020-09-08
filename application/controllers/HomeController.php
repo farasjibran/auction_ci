@@ -132,13 +132,26 @@ class HomeController extends CI_Controller
 		redirect(base_url());
 	}
 
-	// admin home
-	public function adminHome()
+	public function viewGoods()
 	{
 		if ($this->session->userdata('id_level') == 1 || 2) {
 			$data['title'] = "Auction";
 			$data['barang'] = $this->modelsystem->get_barang();
 			$data['c_barang'] = $this->modelsystem->count_barang();
+			$this->load->view('admin/viewgoods', $data);
+		} else {
+			echo 'this is user view';
+		}
+	}
+
+	// admin home
+	public function adminHome()
+	{
+		if ($this->session->userdata('id_level') == 1 || 2) {
+			$data['title'] = "Auction";
+			$data['totaladmn'] = $this->modelsystem->dataAdmin();
+			$data['totaluser'] = $this->modelsystem->dataPetugas();
+			$data['totalbarang'] = $this->modelsystem->dataBarang();
 			$this->load->view('admin/homeadmin', $data);
 		} else {
 			echo 'this is user view';
@@ -148,8 +161,12 @@ class HomeController extends CI_Controller
 	// add goods view
 	public function addGoods()
 	{
-		$data['title'] = "Auction";
-		$this->load->view('admin/addgoods', $data);
+		if ($this->session->userdata('id_level') == 1 || 2) {
+			$data['title'] = "Auction";
+			$this->load->view('admin/addgoods', $data);
+		} else {
+			echo 'this is admin view';
+		}
 	}
 
 	// add user
@@ -202,7 +219,7 @@ class HomeController extends CI_Controller
 
 		$this->db->set('tanggal_upload', 'NOW()', FALSE);
 		$this->modelsystem->update_data($where, $data, 'tb_barang');
-		header("Location: " . base_url() . 'index.php/homecontroller/adminHome');
+		header("Location: " . base_url() . 'index.php/homecontroller/viewGoods');
 	}
 
 	// delete barang
@@ -217,7 +234,7 @@ class HomeController extends CI_Controller
 		echo $where;
 
 		$this->modelsystem->hapus_data($where, 'tb_barang');
-		header("Location: " . base_url() . 'index.php/homecontroller/adminHome');
+		header("Location: " . base_url() . 'index.php/homecontroller/viewGoods');
 	}
 
 	// dompdf

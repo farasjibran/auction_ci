@@ -63,6 +63,7 @@
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
 						<h6 class="collapse-header">Action For Goods</h6>
+						<a class="collapse-item" href="<?php echo site_url('homecontroller/viewGoods') ?>">View Goods</a>
 						<a class="collapse-item" href="<?php echo site_url('homecontroller/addGoods') ?>">Add Goods</a>
 					</div>
 				</div>
@@ -73,7 +74,7 @@
 
 			<!-- Heading -->
 			<div class="sidebar-heading">
-				Officer
+				user data
 			</div>
 
 			<!-- Nav Item - Pages Collapse Menu -->
@@ -89,6 +90,13 @@
 						<a class="collapse-item" href="<?php echo site_url('homecontroller/addOfficer') ?>">Add Officer</a>
 					</div>
 				</div>
+			</li>
+
+			<!-- Nav Item - Charts -->
+			<li class="nav-item">
+				<a class="nav-link" href="charts.html">
+					<i class="fas fa-fw fa-chart-area"></i>
+					<span>Charts</span></a>
 			</li>
 
 		</ul>
@@ -112,7 +120,7 @@
 						<!-- Nav Item - User Information -->
 						<li class="nav-item dropdown no-arrow">
 							<a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-								<span class="mr-2 d-none d-lg-inline text-gray-900 small"><b><?php echo $this->session->userdata('usernama'); ?></b></span>
+								<span class="mr-2 d-none d-lg-inline text-gray-900 small"><b><?php echo $this->session->userdata('nama_user'); ?></b></span>
 								<img class="img-profile rounded-circle" src="https://images.unsplash.com/photo-1493752603190-08d8b5d1781d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60/60x60">
 							</a>
 							<!-- Dropdown - User Information -->
@@ -135,7 +143,8 @@
 					<!-- Page Heading -->
 					<div class="d-sm-flex align-items-center justify-content-between mb-4">
 						<h1 class="h3 mb-0 text-gray-800">Users</h1>
-						<a href="#" data-toggle="modal" data-target="#generateModal" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white"></i> Generate Report</a>
+						<a style="margin-left: 72%;" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" href="<?php echo site_url('homecontroller/cetakData') ?>"><i class="fas fa-file fa-sm text-white" style="margin-right: 5px;"></i> Generate Pdf</a>
+						<a class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm" href="<?php echo site_url('homecontroller/cetakExcel') ?>"><i class="fas fa-table fa-sm text-white" style="margin-right: 5px;"></i> Generate Excel</a>
 					</div>
 
 					<!-- Content Row -->
@@ -172,7 +181,7 @@
 															<td scope="row"><?php echo $data->id_petugas ?></td>
 															<td><?php echo $data->nama_petugas ?></td>
 															<td><?php echo $data->username ?></td>
-															<td><?php echo $data->password ?></td>
+															<td><?php echo md5($data->password) ?></td>
 															<td><?php echo $data->id_level ?></td>
 															<td>
 																<button type="button" class="btn btn-primary btn-icon-split editbtn" style="padding-right: 6%;">
@@ -181,7 +190,7 @@
 																	</span>
 																	<span class="text">Edit Data</span>
 																</button>
-																<button type="button" class="btn btn-danger btn-icon-split deletebtn">
+																<button type="button" class="btn btn-danger btn-icon-split deletebtn" style="padding-right: 2%; margin-top: 10px;">
 																	<span class="icon text-white">
 																		<i class="fas fa-trash"></i>
 																	</span>
@@ -243,34 +252,6 @@
 		</div>
 	</div>
 
-	<!-- Generate Modal-->
-	<div class="modal fade" id="generateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">Generate Report</h5>
-					<button class="close" type="button" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">×</span>
-					</button>
-				</div>
-				<div class="modal-body">
-					Select To Generate Report :
-					<div class="row mt-4">
-						<div class="col" style="margin-right: -50%;">
-							<a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" href="<?php echo site_url('homecontroller/cetakData') ?>"><i class="fas fa-file fa-sm text-white" style="margin-right: 5px;"></i> Generate Pdf</a>
-						</div>
-						<div class="col">
-							<a class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm" href="<?php echo site_url('homecontroller/cetakExcel') ?>"><i class="fas fa-table fa-sm text-white" style="margin-right: 5px;"></i> Generate Excel</a>
-						</div>
-					</div>
-				</div>
-				<div class="modal-footer">
-					<button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-				</div>
-			</div>
-		</div>
-	</div>
-
 	<!-- Edit Modal -->
 	<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog" role="document">
@@ -284,25 +265,20 @@
 				<form method="post" action="<?php echo base_url('index.php/homecontroller/updateData') ?>" enctype="multipart/form-data">
 					<div class="modal-body">
 						<div class="form-group">
-							<input type=hidden name="idbarang" id="idbarang" class="form-control" placeholder="Enter Name Of Goods">
+							<input type=hidden name="idpetugas" id="idpetugas" class="form-control">
 						</div>
 						<div class="form-group">
-							<label>Name Of Goods</label>
-							<input type="text" name="namabarang" id="namabarang" class="form-control" placeholder="Enter Name Of Goods">
+							<label>Officer Name</label>
+							<input type="text" name="namapetugas" id="namapetugas" class="form-control" placeholder="Enter Officer Name">
 						</div>
 						<div class="form-group">
-							<label>Price Of Goods</label>
-							<input type="text" name="hargabarang" id="hargabarang" class="form-control" placeholder="Enter Price Of Goods">
+							<label>Username</label>
+							<input type="text" name="username" id="username" class="form-control" placeholder="Enter Username">
 						</div>
 						<div class="form-group">
-							<label>Description Item</label>
-							<textarea type="text" name="deskripsiitem" id="deskripsibarang" class="form-control"> </textarea>
+							<label>Password</label>
+							<input type="text" name="password" id="password" class="form-control" placeholder="Enter Password">
 						</div>
-						<div class="form-group">
-							<label>Picture</label>
-							<input type="file" name="foto" id="foto" class="form-control">
-						</div>
-
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
@@ -369,10 +345,10 @@
 
 			console.log(data);
 
-			$('#idbarang').val(data[0]);
-			$('#namabarang').val(data[1]);
-			$('#hargabarang').val(data[3]);
-			$('#deskripsibarang').val(data[4]);
+			$('#idpetugas').val(data[0]);
+			$('#namapetugas').val(data[1]);
+			$('#username').val(data[2]);
+			$('#password').val(data[3]);
 		});
 
 		$('.deletebtn').on('click', function() {

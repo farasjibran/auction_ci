@@ -63,6 +63,7 @@
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
 						<h6 class="collapse-header">Action For Goods</h6>
+						<a class="collapse-item" href="<?php echo site_url('homecontroller/viewGoods') ?>">View Goods</a>
 						<a class="collapse-item" href="<?php echo site_url('homecontroller/addGoods') ?>">Add Goods</a>
 					</div>
 				</div>
@@ -73,7 +74,7 @@
 
 			<!-- Heading -->
 			<div class="sidebar-heading">
-				Officer
+				user data
 			</div>
 
 			<!-- Nav Item - Pages Collapse Menu -->
@@ -89,6 +90,13 @@
 						<a class="collapse-item active" href="<?php echo site_url('homecontroller/addOfficer') ?>">Add Officer</a>
 					</div>
 				</div>
+			</li>
+
+			<!-- Nav Item - Charts -->
+			<li class="nav-item">
+				<a class="nav-link" href="charts.html">
+					<i class="fas fa-fw fa-chart-area"></i>
+					<span>Charts</span></a>
 			</li>
 
 		</ul>
@@ -112,7 +120,7 @@
 						<!-- Nav Item - User Information -->
 						<li class="nav-item dropdown no-arrow">
 							<a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-								<span class="mr-2 d-none d-lg-inline text-gray-900 small"><b><?php echo $this->session->userdata('usernama'); ?></b></span>
+								<span class="mr-2 d-none d-lg-inline text-gray-900 small"><b><?php echo $this->session->userdata('nama_user'); ?></b></span>
 								<img class="img-profile rounded-circle" src="https://images.unsplash.com/photo-1493752603190-08d8b5d1781d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60/60x60">
 							</a>
 							<!-- Dropdown - User Information -->
@@ -146,8 +154,7 @@
 						</div>
 						<!-- Card Body -->
 						<div class="card-body">
-							<form action="<?php echo site_url('homecontroller/addOfficerdata') ?>" method="post" enctype="multipart/form-data">
-								<input type="hidden" name="idlevel" value="2">
+							<form action="<?php echo site_url('homecontroller/registerUser') ?>" method="post" enctype="multipart/form-data">
 								<!-- Input A Name -->
 								<div class="input-group mb-3">
 									<div class="input-group-prepend">
@@ -171,6 +178,18 @@
 											Password</span>
 									</div>
 									<input name="password" type="password" class="form-control" aria-label="With textarea" aria-describedby="inputGroup-sizing-default" placeholder="Put Password..."></input>
+								</div>
+								<!-- Input A Password -->
+								<div class="input-group mb-3">
+									<div class="input-group-prepend">
+										<span class="input-group-text bg-primary text-white" id="inputGroup-sizing-default" style="width: 140px;">
+											Role</span>
+									</div>
+									<select class="custom-select drpdw" name="role">
+										<option selected>Select Role</option>
+										<option value="1">Administrator</option>
+										<option value="2">Officer</option>
+									</select>
 								</div>
 								<!-- Button Save Data -->
 								<button type="submit" class="btn btn-success btn-icon-split">
