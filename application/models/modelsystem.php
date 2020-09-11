@@ -5,7 +5,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 class modelsystem extends CI_Model
 {
 	// for login & register
-	public function simpanData()
+	public function simpanPetugas()
 	{
 		$data = array(
 			'id_petugas' => "",
@@ -17,11 +17,11 @@ class modelsystem extends CI_Model
 
 
 		$this->db->insert('tb_petugas', $data);
-		header("Location: " . base_url() . 'index.php/homecontroller/addOfficer');
+		header("Location: " . base_url() . 'index.php/homecontroller/viewOfficer');
 	}
 
 	// register
-	public function simpanPetugas()
+	public function simpanUser()
 	{
 		$data = array(
 			'id_petugas' => "",
@@ -82,9 +82,9 @@ class modelsystem extends CI_Model
 			'foto_barang' => $foto
 		);
 
-		// $this->db->set('tanggal_upload', 'NOW()', FALSE);
+		$this->db->set('tanggal_upload', 'NOW()', FALSE);
 		$this->db->insert('tb_barang', $data);
-		header("Location: " . base_url() . 'index.php/homecontroller/addGoods');
+		header("Location: " . base_url() . 'index.php/homecontroller/viewGoods');
 	}
 
 	public function get_barang()

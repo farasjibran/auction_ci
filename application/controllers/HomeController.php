@@ -60,7 +60,13 @@ class HomeController extends CI_Controller
 	// register user
 	public function registerUser()
 	{
-		$this->modelsystem->simpanData();
+		$this->modelsystem->simpanUser();
+	}
+
+	// register petugas
+	public function registerPetugas()
+	{
+		$this->modelsystem->simpanPetugas();
 	}
 
 	// load data
@@ -108,8 +114,10 @@ class HomeController extends CI_Controller
 				}
 			} else {
 				$idlevel = $this->modelsystem->cek_login($where)->row(0)->id_level;
+				$namauser = $this->modelsystem->cek_login($where)->row(0)->nama_petugas;
 				$data_session = array(
 					'id_level' => $idlevel,
+					'nama_user' => $namauser,
 					'usernama' => $usernames,
 					'status' => 'login'
 				);
@@ -155,17 +163,6 @@ class HomeController extends CI_Controller
 			$this->load->view('admin/homeadmin', $data);
 		} else {
 			echo 'this is user view';
-		}
-	}
-
-	// add goods view
-	public function addGoods()
-	{
-		if ($this->session->userdata('id_level') == 1 || 2) {
-			$data['title'] = "Auction";
-			$this->load->view('admin/addgoods', $data);
-		} else {
-			echo 'this is admin view';
 		}
 	}
 
@@ -254,13 +251,6 @@ class HomeController extends CI_Controller
 		$this->modelexcel->exportBarang();
 	}
 
-	// add officer view
-	public function addOfficer()
-	{
-		$data['title'] = "Auction";
-		$this->load->view('officer/addofficer', $data);
-	}
-
 	// view officer view
 	public function viewOfficer()
 	{
@@ -272,6 +262,46 @@ class HomeController extends CI_Controller
 		} else {
 			echo 'this is user view';
 		}
+	}
+
+	// update data officer
+	public function updateOfficer()
+	{
+		$idpetugas = $this->input->post('idpetugas');
+		$namapetugas = $this->input->post('namapetugas');
+		$username = $this->input->post('username');
+		$password = $this->input->post('password');
+		$role = $this->input->post('role');
+
+		$data = array(
+			'nama_petugas' => $namapetugas,
+			'username' => $username,
+			'password' => $password,
+			'id_level' => $role
+
+		);
+
+		$where = array(
+			'id_petugas' => $idpetugas
+		);
+
+		$this->modelsystem->update_data($where, $data, 'tb_petugas');
+		header("Location: " . base_url() . 'index.php/homecontroller/viewOfficer');
+	}
+
+	// delete user
+	public function deleteOfficer()
+	{
+		$idpetugas = $this->input->post('idpetugass');
+
+		$where = array(
+			'id_petugas' => $idpetugas
+		);
+
+		echo $where;
+
+		$this->modelsystem->hapus_data($where, 'tb_petugas');
+		header("Location: " . base_url() . 'index.php/homecontroller/viewOfficer');
 	}
 
 	// 404 password

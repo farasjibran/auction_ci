@@ -44,6 +44,12 @@
 			margin-left: -13%;
 		}
 
+		.username {
+			margin-top: 15px;
+			margin-bottom: 5px;
+			margin-left: -13%;
+		}
+
 		.passwd {
 			margin-top: 5px;
 			margin-bottom: 5px;
@@ -84,8 +90,18 @@
 
 				<!-- Form Input Register -->
 				<form action="<?php echo site_url('homecontroller/registerUser') ?>" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
+					<!-- id_level -->
+					<input name="idlevel" type="hidden" class="form-control" value="3">
 					<!-- Input User -->
-					<p class="user">Username</p>
+					<p class="user">Fullname</p>
+					<div class="input-group inputuser">
+						<input type="text" placeholder="First name" aria-label="First name" class="form-control" required>
+						<input name="namauser" type="text" placeholder="Last name" aria-label="Last name" class="form-control" required>
+						<!-- <input name="namauser" type="text" class="form-control" placeholder="Fullname" aria-label="Fullname" aria-describedby="basic-addon1"> -->
+						<div class="invalid-feedback">Please enter a valid name.</div>
+					</div>
+
+					<p class="username">Username</p>
 					<div class="input-group mb-3 inputuser">
 						<input name="username" type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" required>
 						<div class="invalid-feedback">Please enter a valid username.</div>
@@ -97,14 +113,6 @@
 						<input name="password" type="password" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="basic-addon1" required>
 						<div class="invalid-feedback">Please enter a valid password.</div>
 					</div>
-
-					<!-- Input Confirm Password -->
-					<p class="passwd">Role</p>
-					<select class="custom-select drpdw" name="role">
-						<option selected>Select Role</option>
-						<option value="1">Administrator</option>
-						<option value="3">User</option>
-					</select>
 
 					<!-- Button -->
 					<div class="btngrup">

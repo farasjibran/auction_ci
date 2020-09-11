@@ -64,7 +64,6 @@
 					<div class="bg-white py-2 collapse-inner rounded">
 						<h6 class="collapse-header">Action For Goods</h6>
 						<a class="collapse-item active" href="<?php echo site_url('homecontroller/viewGoods') ?>">View Goods</a>
-						<a class="collapse-item" href="<?php echo site_url('homecontroller/addGoods') ?>">Add Goods</a>
 					</div>
 				</div>
 			</li>
@@ -87,7 +86,6 @@
 					<div class="bg-white py-2 collapse-inner rounded">
 						<h6 class="collapse-header">Action For Officer</h6>
 						<a class="collapse-item" href="<?php echo site_url('homecontroller/viewOfficer') ?>">View Officer</a>
-						<a class="collapse-item" href="<?php echo site_url('homecontroller/addOfficer') ?>">Add Officer</a>
 					</div>
 				</div>
 			</li>
@@ -151,6 +149,18 @@
 						<!-- Card Header - Dropdown -->
 						<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
 							<h6 class="m-0 font-weight-bold text-primary">Data Barang</h6>
+							<div class="dropdown no-arrow">
+								<a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+									<i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+								</a>
+								<div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+									<div class="dropdown-header">Action</div>
+									<a class="dropdown-item addbtn" href="#">
+										<i class="fas fa-plus fa-sm fa-fw" style="color: green;">
+										</i> Add Data
+									</a>
+								</div>
+							</div>
 						</div>
 						<!-- Card Body -->
 						<div class="card-body">
@@ -244,6 +254,45 @@
 			</div>
 		</div>
 
+		<!-- Add Modal -->
+		<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">Add Data</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<form method="post" action="<?php echo base_url('index.php/homecontroller/addData') ?>" enctype="multipart/form-data">
+						<div class="modal-body">
+							<div class="form-group">
+								<label>Name Of Goods</label>
+								<input type="text" name="namabarang" id="namabarang" class="form-control" placeholder="Enter Name Of Goods">
+							</div>
+							<div class="form-group">
+								<label>Price Of Goods</label>
+								<input type="text" name="hargabarang" id="hargabarang" class="form-control" placeholder="Enter Price Of Goods">
+							</div>
+							<div class="form-group">
+								<label>Description Item</label>
+								<textarea type="text" name="deskripsiitem" id="deskripsibarang" class="form-control"> </textarea>
+							</div>
+							<div class="form-group">
+								<label>Picture</label>
+								<input type="file" name="foto" id="foto" class="form-control">
+							</div>
+
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+							<button type="submit" class="btn btn-success">Add Data</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+
 		<!-- Edit Modal -->
 		<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 			<div class="modal-dialog" role="document">
@@ -256,9 +305,7 @@
 					</div>
 					<form method="post" action="<?php echo base_url('index.php/homecontroller/updateData') ?>" enctype="multipart/form-data">
 						<div class="modal-body">
-							<div class="form-group">
-								<input type=hidden name="idbarang" id="idbarang" class="form-control" placeholder="Enter Name Of Goods">
-							</div>
+							<input type=hidden name="idbarang" id="idbarang" class="form-control" placeholder="Enter Name Of Goods">
 							<div class="form-group">
 								<label>Name Of Goods</label>
 								<input type="text" name="namabarang" id="namabarang" class="form-control" placeholder="Enter Name Of Goods">
@@ -299,7 +346,7 @@
 					<form action="<?php echo base_url('index.php/homecontroller/deleteData') ?>" method="post">
 						<div class="modal-body">
 							<input type=hidden name="idbarangs" id="idbarangs" class="form-control">
-							<h5>Are You Sure To Delete This Data?</h5>
+							<label>Are You Sure To Delete This Data?</label>
 						</div>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -362,6 +409,12 @@
 			console.log(data);
 
 			$('#idbarangs').val(data[0]);
+		});
+
+		$('.addbtn').on('click', function() {
+
+			$('#addModal').modal('show');
+
 		});
 	});
 </script>

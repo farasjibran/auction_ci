@@ -64,7 +64,6 @@
 					<div class="bg-white py-2 collapse-inner rounded">
 						<h6 class="collapse-header">Action For Goods</h6>
 						<a class="collapse-item" href="<?php echo site_url('homecontroller/viewGoods') ?>">View Goods</a>
-						<a class="collapse-item" href="<?php echo site_url('homecontroller/addGoods') ?>">Add Goods</a>
 					</div>
 				</div>
 			</li>
@@ -87,7 +86,6 @@
 					<div class="bg-white py-2 collapse-inner rounded">
 						<h6 class="collapse-header">Action For Officer</h6>
 						<a class="collapse-item" href="<?php echo site_url('homecontroller/viewOfficer') ?>">View Officer</a>
-						<a class="collapse-item" href="<?php echo site_url('homecontroller/addOfficer') ?>">Add Officer</a>
 					</div>
 				</div>
 			</li>
@@ -153,53 +151,59 @@
 
 						<!-- Admin -->
 						<div class="col-xl-3 col-md-6 mb-4">
-							<div class="card border-left-primary shadow h-100 py-2">
-								<div class="card-body">
-									<div class="row no-gutters align-items-center">
-										<div class="col mr-2">
-											<div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Admin</div>
-											<div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $totaladmn ?></div>
-										</div>
-										<div class="col-auto">
-											<i class="fas fa-user-cog fa-2x text-gray-300"></i>
+							<a href="<?php echo site_url('homecontroller/viewOfficer') ?>">
+								<div class="card border-left-primary shadow h-100 py-2">
+									<div class="card-body">
+										<div class="row no-gutters align-items-center">
+											<div class="col mr-2">
+												<div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Admin</div>
+												<div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $totaladmn ?></div>
+											</div>
+											<div class="col-auto">
+												<i class="fas fa-user-cog fa-2x text-gray-300"></i>
+											</div>
 										</div>
 									</div>
 								</div>
-							</div>
+							</a>
 						</div>
 
 						<!-- Officer -->
 						<div class="col-xl-3 col-md-6 mb-4">
-							<div class="card border-left-success shadow h-100 py-2">
-								<div class="card-body">
-									<div class="row no-gutters align-items-center">
-										<div class="col mr-2">
-											<div class="text-xs font-weight-bold text-success text-uppercase mb-1">Officer</div>
-											<div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $totaluser ?></div>
-										</div>
-										<div class="col-auto">
-											<i class="fas fa-user fa-2x text-gray-300"></i>
+							<a href="<?php echo site_url('homecontroller/viewOfficer') ?>">
+								<div class="card border-left-success shadow h-100 py-2">
+									<div class="card-body">
+										<div class="row no-gutters align-items-center">
+											<div class="col mr-2">
+												<div class="text-xs font-weight-bold text-success text-uppercase mb-1">Officer</div>
+												<div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $totaluser ?></div>
+											</div>
+											<div class="col-auto">
+												<i class="fas fa-user fa-2x text-gray-300"></i>
+											</div>
 										</div>
 									</div>
 								</div>
-							</div>
+							</a>
 						</div>
 
 						<!-- Barang -->
 						<div class="col-xl-3 col-md-6 mb-4">
-							<div class="card border-left-danger shadow h-100 py-2">
-								<div class="card-body">
-									<div class="row no-gutters align-items-center">
-										<div class="col mr-2">
-											<div class="text-xs font-weight-bold text-danger text-uppercase mb-1">Items</div>
-											<div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $totalbarang ?></div>
-										</div>
-										<div class="col-auto">
-											<i class="fas fa-boxes fa-2x text-gray-300"></i>
+							<a href="<?php echo site_url('homecontroller/viewGoods') ?>">
+								<div class="card border-left-danger shadow h-100 py-2">
+									<div class="card-body">
+										<div class="row no-gutters align-items-center">
+											<div class="col mr-2">
+												<div class="text-xs font-weight-bold text-danger text-uppercase mb-1">Items</div>
+												<div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $totalbarang ?></div>
+											</div>
+											<div class="col-auto">
+												<i class="fas fa-boxes fa-2x text-gray-300"></i>
+											</div>
 										</div>
 									</div>
 								</div>
-							</div>
+							</a>
 						</div>
 
 

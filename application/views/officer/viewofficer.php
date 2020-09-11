@@ -64,7 +64,6 @@
 					<div class="bg-white py-2 collapse-inner rounded">
 						<h6 class="collapse-header">Action For Goods</h6>
 						<a class="collapse-item" href="<?php echo site_url('homecontroller/viewGoods') ?>">View Goods</a>
-						<a class="collapse-item" href="<?php echo site_url('homecontroller/addGoods') ?>">Add Goods</a>
 					</div>
 				</div>
 			</li>
@@ -87,7 +86,6 @@
 					<div class="bg-white py-2 collapse-inner rounded">
 						<h6 class="collapse-header">Action For Officer</h6>
 						<a class="collapse-item active" href="<?php echo site_url('homecontroller/viewOfficer') ?>">View Officer</a>
-						<a class="collapse-item" href="<?php echo site_url('homecontroller/addOfficer') ?>">Add Officer</a>
 					</div>
 				</div>
 			</li>
@@ -155,7 +153,19 @@
 						<div class="card shadow mb-4">
 							<!-- Card Header - Dropdown -->
 							<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-								<h6 class="m-0 font-weight-bold text-primary">Data Petugas</h6>
+								<h6 class="m-0 font-weight-bold text-primary">Data Officer & Admin</h6>
+								<div class="dropdown no-arrow">
+									<a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+										<i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+									</a>
+									<div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+										<div class="dropdown-header">Action</div>
+										<a class="dropdown-item addbtn" href="#">
+											<i class="fas fa-plus fa-sm fa-fw" style="color: green;">
+											</i> Add Data
+										</a>
+									</div>
+								</div>
 							</div>
 							<!-- Card Body -->
 							<div class="card-body">
@@ -252,6 +262,49 @@
 		</div>
 	</div>
 
+	<!-- Add Modal -->
+	<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Add Data</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<form method="post" action="<?php echo base_url('index.php/homecontroller/registerPetugas') ?>" enctype="multipart/form-data">
+					<div class="modal-body">
+						<div class="form-group">
+							<label>Name</label>
+							<input type="text" name="namapetugas" class="form-control" placeholder="Enter name">
+						</div>
+						<div class="form-group">
+							<label>Username</label>
+							<input type="text" name="username" class="form-control" placeholder="Enter username">
+						</div>
+						<div class="form-group">
+							<label>Password</label>
+							<input type="password" name="password" class="form-control" placeholder="Enter password"> </input>
+						</div>
+						<div class="form-group">
+							<label>Role</label>
+							<select class="custom-select drpdw" name="role">
+								<option selected>Select Role</option>
+								<option value="1">Administrator</option>
+								<option value="2">Officer</option>
+							</select>
+						</div>
+
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+						<button type="submit" class="btn btn-success">Add Data</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
 	<!-- Edit Modal -->
 	<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog" role="document">
@@ -262,11 +315,9 @@
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
-				<form method="post" action="<?php echo base_url('index.php/homecontroller/updateData') ?>" enctype="multipart/form-data">
+				<form method="post" action="<?php echo base_url('index.php/homecontroller/updateOfficer') ?>" enctype="multipart/form-data">
 					<div class="modal-body">
-						<div class="form-group">
-							<input type=hidden name="idpetugas" id="idpetugas" class="form-control">
-						</div>
+						<input type=hidden name="idpetugas" id="idpetugas" class="form-control">
 						<div class="form-group">
 							<label>Officer Name</label>
 							<input type="text" name="namapetugas" id="namapetugas" class="form-control" placeholder="Enter Officer Name">
@@ -277,7 +328,15 @@
 						</div>
 						<div class="form-group">
 							<label>Password</label>
-							<input type="text" name="password" id="password" class="form-control" placeholder="Enter Password">
+							<input type="password" name="password" id="password" class="form-control" placeholder="Enter Password">
+						</div>
+						<div class="form-group">
+							<label>Role</label>
+							<select class="custom-select drpdw" name="role" id="role">
+								<option selected>Select Role</option>
+								<option value="1">Administrator</option>
+								<option value="2">Officer</option>
+							</select>
 						</div>
 					</div>
 					<div class="modal-footer">
@@ -299,10 +358,10 @@
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
-				<form action="<?php echo base_url('index.php/homecontroller/deleteData') ?>" method="post">
+				<form action="<?php echo base_url('index.php/homecontroller/deleteOfficer') ?>" method="post">
 					<div class="modal-body">
-						<input type=hidden name="idbarangs" id="idbarangs" class="form-control">
-						<h5>Are You Sure To Delete This Data?</h5>
+						<input type=hidden name="idpetugass" id="idpetugass" class="form-control">
+						<label>Are You Sure To Delete This Data?</label>
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -349,6 +408,13 @@
 			$('#namapetugas').val(data[1]);
 			$('#username').val(data[2]);
 			$('#password').val(data[3]);
+			$('#role').val(data[4]);
+		});
+
+		$('.addbtn').on('click', function() {
+
+			$('#addModal').modal('show');
+
 		});
 
 		$('.deletebtn').on('click', function() {
@@ -363,7 +429,7 @@
 
 			console.log(data);
 
-			$('#idbarangs').val(data[0]);
+			$('#idpetugass').val(data[0]);
 		});
 	});
 </script>

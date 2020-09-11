@@ -22,7 +22,6 @@
 		.setuser {
 			font-size: 120px;
 			margin-top: -24%;
-			margin-left: 25%;
 			text-shadow: 0px 10px #929292;
 		}
 
@@ -60,7 +59,7 @@
 	<!-- background -->
 	<div class="container">
 		<img class="imgback" width="150%" src="<?php echo base_url('assets/image/imgback.png') ?>">
-		<h1 class="setuser text-white">Hi, <?php echo strtoupper($this->session->userdata('usernama')); ?></h1>
+		<h1 class="setuser text-white text-center">Hi, <?php echo strtoupper($this->session->userdata('nama_user')); ?></h1>
 	</div>
 
 	<div class="container judul">

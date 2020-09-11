@@ -11,7 +11,7 @@
 			<div class="col">
 				<h4 class="m-0 font-weight-bold text-primary">Data Barang</h4>
 				<h6 style="margin-top: 15px;">Tanggal Barang : <?php echo date('d-m-Y') ?></h6>
-				<h6>Nama Petugas : <?php echo $this->session->userdata('usernama'); ?></h6>
+				<h6>Nama Petugas : <?php echo $this->session->userdata('nama_user'); ?></h6>
 			</div>
 		</div>
 	</div>
