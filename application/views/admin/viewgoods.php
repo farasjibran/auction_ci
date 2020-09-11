@@ -159,6 +159,14 @@
 										<i class="fas fa-plus fa-sm fa-fw" style="color: green;">
 										</i> Add Data
 									</a>
+									<a class="dropdown-item" href="<?php echo site_url('homecontroller/cetakData') ?>">
+										<i class="fas fa-file fa-sm fa-fw" style="color: blue;">
+										</i> Generate Pdf
+									</a>
+									<a class="dropdown-item" href="<?php echo site_url('homecontroller/cetakExcel') ?>">
+										<i class="fas fa-table fa-sm fa-fw" style="color: green;">
+										</i> Generate Excel
+									</a>
 								</div>
 							</div>
 						</div>

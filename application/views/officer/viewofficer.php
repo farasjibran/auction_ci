@@ -139,10 +139,8 @@
 				<div class="container-fluid">
 
 					<!-- Page Heading -->
-					<div class="d-sm-flex align-items-center justify-content-between mb-4">
+					<div class="d-sm-flex align-items-center justify-content-between mb-4" style="margin-top: -20px;">
 						<h1 class="h3 mb-0 text-gray-800">Users</h1>
-						<a style="margin-left: 72%;" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" href="<?php echo site_url('homecontroller/cetakData') ?>"><i class="fas fa-file fa-sm text-white" style="margin-right: 5px;"></i> Generate Pdf</a>
-						<a class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm" href="<?php echo site_url('homecontroller/cetakExcel') ?>"><i class="fas fa-table fa-sm text-white" style="margin-right: 5px;"></i> Generate Excel</a>
 					</div>
 
 					<!-- Content Row -->
@@ -163,6 +161,14 @@
 										<a class="dropdown-item addbtn" href="#">
 											<i class="fas fa-plus fa-sm fa-fw" style="color: green;">
 											</i> Add Data
+										</a>
+										<a class="dropdown-item" href="<?php echo site_url('homecontroller/cetakData') ?>">
+											<i class="fas fa-file fa-sm fa-fw" style="color: blue;">
+											</i> Generate Pdf
+										</a>
+										<a class="dropdown-item" href="<?php echo site_url('homecontroller/cetakExcel') ?>">
+											<i class="fas fa-table fa-sm fa-fw" style="color: green;">
+											</i> Generate Excel
 										</a>
 									</div>
 								</div>
