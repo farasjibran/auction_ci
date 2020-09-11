@@ -90,6 +90,7 @@
 							</div>
 							<div class="card-body" style="padding-bottom: px;">
 								<h5 class="card-title"><?php echo $barangs->nama_barang ?></h5>
+								<label style="color: grey;"><i><?php echo $barangs->kategori_barang ?></i></label>
 								<p class="card-text"><?php echo substr($barangs->deskripsi_barang, 0, 94) ?>...</p>
 								<a href="#" class="btn btn-primary">Read More...</a>
 							</div>

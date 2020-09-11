@@ -202,6 +202,7 @@ class HomeController extends CI_Controller
 		$namabarangs = $this->input->post('namabarang');
 		$hargabarangs = $this->input->post('hargabarang');
 		$deskripsiitems = $this->input->post('deskripsiitem');
+		$kategoriitems = $this->input->post('kategoriitem');
 		$foto = $_FILES['foto']['tmp_name'];
 		if ($foto = '') {
 			echo "Tidak Ada Gambar!";
@@ -223,8 +224,8 @@ class HomeController extends CI_Controller
 			'nama_barang' => $namabarangs,
 			'harga_awal' => $hargabarangs,
 			'deskripsi_barang' => $deskripsiitems,
+			'kategori_barang' => $kategoriitems,
 			'foto_barang' => $foto
-
 		);
 
 		$where = array(

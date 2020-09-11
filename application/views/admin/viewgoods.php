@@ -175,7 +175,7 @@
 						<!-- Card Body -->
 						<div class="card-body">
 							<div class="table-responsive">
-								<table class="table table-bordered" cellspacing="0" width="100%" id="dataTable">
+								<table class="table table-bordered text-center" cellspacing="0" width="100%" id="dataTable">
 									<thead class="bg-primary text-white">
 										<tr>
 											<th scope="col">Id Barang</th>
