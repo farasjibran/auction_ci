@@ -100,17 +100,34 @@ class HomeController extends CI_Controller
 			if ($idlevel == '1' || $idlevel == '2') {
 				$idlevel = $this->modelsystem->cek_login($where)->row(0)->id_level;
 				$namauser = $this->modelsystem->cek_login($where)->row(0)->nama_petugas;
-				$data_session = array(
-					'id_level' => $idlevel,
-					'nama_user' => $namauser,
-					'usernama' => $usernames,
-					'status' => 'login'
-				);
-				$this->session->set_userdata($data_session);
-				if ($this->session->userdata('status') == 'login') {
-					header("Location: " . base_url() . 'index.php/homecontroller/adminHome');
+				if ($idlevel == '1') {
+					$data_session = array(
+						'id_level' => $idlevel,
+						'nama_user' => $namauser,
+						'usernama' => $usernames,
+						'role' => 'Administrator',
+						'status' => 'login'
+					);
+					$this->session->set_userdata($data_session);
+					if ($this->session->userdata('status') == 'login') {
+						header("Location: " . base_url() . 'index.php/homecontroller/adminHome');
+					} else {
+						echo "Username Atau Password Anda Salah!";
+					}
 				} else {
-					echo "Username Atau Password Anda Salah!";
+					$data_session = array(
+						'id_level' => $idlevel,
+						'nama_user' => $namauser,
+						'usernama' => $usernames,
+						'role' => 'Officer',
+						'status' => 'login'
+					);
+					$this->session->set_userdata($data_session);
+					if ($this->session->userdata('status') == 'login') {
+						header("Location: " . base_url() . 'index.php/homecontroller/adminHome');
+					} else {
+						echo "Username Atau Password Anda Salah!";
+					}
 				}
 			} else {
 				$idlevel = $this->modelsystem->cek_login($where)->row(0)->id_level;

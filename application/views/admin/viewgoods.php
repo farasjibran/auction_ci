@@ -276,19 +276,19 @@
 						<div class="modal-body">
 							<div class="form-group">
 								<label>Name Of Goods</label>
-								<input type="text" name="namabarang" id="namabarang" class="form-control" placeholder="Enter Name Of Goods">
+								<input type="text" name="namabarang" class="form-control" placeholder="Enter Name Of Goods">
 							</div>
 							<div class="form-group">
 								<label>Price Of Goods</label>
-								<input type="text" name="hargabarang" id="hargabarang" class="form-control" placeholder="Enter Price Of Goods">
+								<input type="text" name="hargabarang" class="form-control" placeholder="Enter Price Of Goods">
 							</div>
 							<div class="form-group">
 								<label>Description Item</label>
-								<textarea type="text" name="deskripsiitem" id="deskripsibarang" class="form-control"> </textarea>
+								<textarea type="text" name="deskripsiitem" class="form-control"> </textarea>
 							</div>
 							<div class="form-group">
 								<label>Picture</label>
-								<input type="file" name="foto" id="foto" class="form-control">
+								<input type="file" name="foto" class="form-control">
 							</div>
 
 						</div>
@@ -328,7 +328,7 @@
 							</div>
 							<div class="form-group">
 								<label>Picture</label>
-								<input type="file" name="foto" id="foto" class="form-control">
+								<input type="file" name="foto" class="form-control">
 							</div>
 
 						</div>

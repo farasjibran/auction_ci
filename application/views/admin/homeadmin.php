@@ -118,7 +118,9 @@
 						<!-- Nav Item - User Information -->
 						<li class="nav-item dropdown no-arrow">
 							<a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-								<span class="mr-2 d-none d-lg-inline text-gray-900 small"><b><?php echo $this->session->userdata('nama_user'); ?></b></span>
+								<span class="mr-2 d-none d-lg-inline text-gray-900 small"><b><?php echo ucfirst($this->session->userdata('nama_user')); ?></b></span>
+								<div class="topbar-divider d-none d-sm-block" style="height: 25px ; margin-left: -2px;"></div>
+								<span class="mr-2 d-none d-lg-inline text-gray-900 small" style="margin-left: -10px;"><b><?php echo $this->session->userdata('role'); ?></b></span>
 								<img class="img-profile rounded-circle" src="https://images.unsplash.com/photo-1493752603190-08d8b5d1781d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60/60x60">
 							</a>
 							<!-- Dropdown - User Information -->
@@ -141,8 +143,6 @@
 					<!-- Page Heading -->
 					<div class="d-sm-flex align-items-center justify-content-between mb-4">
 						<h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-						<!-- <a style="margin-left: 68%;" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" href="<?php echo site_url('homecontroller/cetakData') ?>"><i class="fas fa-file fa-sm text-white" style="margin-right: 5px;"></i> Generate Pdf</a>
-						<a class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm" href="<?php echo site_url('homecontroller/cetakExcel') ?>"><i class="fas fa-table fa-sm text-white" style="margin-right: 5px;"></i> Generate Excel</a> -->
 					</div>
 
 					<!-- Content Row -->
@@ -206,17 +206,24 @@
 							</a>
 						</div>
 
+						<!-- History Auction -->
+						<div class="col-xl-5 col-lg-6 mb-4">
+							<div class="card shadow mb-4">
+								<!-- Card Header - Dropdown -->
+								<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+									<h6 class="m-0 font-weight-bold text-primary">History Auction</h6>
+								</div>
+							</div>
+						</div>
 
-					</div>
-
-					<!-- Area Data -->
-					<div class="card shadow mb-4">
-						<!-- <div class="embed-responsive embed-responsive-21by9">
-								<iframe src="https://www.youtube.com/embed/gTjkDsNOgkg?&autoplay=1" frameborder="0" class="embed-responsive-item" encrypted-media" allowfullscreen></iframe>
-							</div> -->
-						<!-- Card Header - Dropdown -->
-						<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-							<h6 class="m-0 font-weight-bold text-primary">Add Data</h6>
+						<!-- History Auction -->
+						<div class="col-xl-7 col-lg-6 mb-4">
+							<div class="card shadow mb-4">
+								<!-- Card Header - Dropdown -->
+								<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+									<h6 class="m-0 font-weight-bold text-primary">History Auction</h6>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
