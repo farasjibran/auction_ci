@@ -79,7 +79,9 @@ class modelsystem extends CI_Model
 			'nama_barang' => $this->input->post('namabarang'),
 			'harga_awal' => $this->input->post('hargabarang'),
 			'deskripsi_barang' => $this->input->post('deskripsiitem'),
-			'foto_barang' => $foto
+			'kategori_barang' => $this->input->post('kategoriitem'),
+			'foto_barang' => $foto,
+			'status' => $this->input->post('status')
 		);
 
 		$this->db->set('tanggal_upload', 'NOW()', FALSE);

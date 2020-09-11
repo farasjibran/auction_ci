@@ -118,7 +118,9 @@
 						<!-- Nav Item - User Information -->
 						<li class="nav-item dropdown no-arrow">
 							<a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-								<span class="mr-2 d-none d-lg-inline text-gray-900 small"><b><?php echo $this->session->userdata('nama_user'); ?></b></span>
+								<span class="mr-2 d-none d-lg-inline text-gray-900 small"><b><?php echo ucfirst($this->session->userdata('nama_user')); ?></b></span>
+								<div class="topbar-divider d-none d-sm-block" style="height: 25px ; margin-left: -2px;"></div>
+								<span class="mr-2 d-none d-lg-inline text-gray-900 small" style="margin-left: -10px;"><b><?php echo $this->session->userdata('role'); ?></b></span>
 								<img class="img-profile rounded-circle" src="https://images.unsplash.com/photo-1493752603190-08d8b5d1781d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60/60x60">
 							</a>
 							<!-- Dropdown - User Information -->
@@ -181,7 +183,9 @@
 											<th scope="col">Tanggal Upload</th>
 											<th scope="col">Harga Awal</th>
 											<th scope="col">Deskripsi Barang</th>
+											<th scope="col">Kategori Barang</th>
 											<th scope="col">Foto Barang</th>
+											<th scope="col">Status</th>
 											<th scope="col">Action</th>
 										</tr>
 									</thead>
@@ -196,7 +200,9 @@
 													<td><?php echo $barangs->tanggal_upload ?></td>
 													<td><?php echo $barangs->harga_awal ?></td>
 													<td><?php echo $barangs->deskripsi_barang ?></td>
-													<td><img style="width: 50%;" src="<?php echo base_url('assets/fotobarang/' . $barangs->foto_barang) ?>"></td>
+													<td><?php echo $barangs->kategori_barang ?></td>
+													<td><img style="width: 100%;" src="<?php echo base_url('assets/fotobarang/' . $barangs->foto_barang) ?>"></td>
+													<td><?php echo $barangs->status ?></td>
 													<td>
 														<button type="button" class="btn btn-primary btn-icon-split editbtn" style="padding-right: 6%;">
 															<span class="icon text-white">
@@ -276,21 +282,32 @@
 						<div class="modal-body">
 							<div class="form-group">
 								<label>Name Of Goods</label>
-								<input type="text" name="namabarang" class="form-control" placeholder="Enter Name Of Goods">
+								<input type="text" name="namabarang" class="form-control" placeholder="Enter Name Goods">
 							</div>
 							<div class="form-group">
 								<label>Price Of Goods</label>
-								<input type="text" name="hargabarang" class="form-control" placeholder="Enter Price Of Goods">
+								<input type="text" name="hargabarang" class="form-control" placeholder="Enter Price Goods">
 							</div>
 							<div class="form-group">
 								<label>Description Item</label>
-								<textarea type="text" name="deskripsiitem" class="form-control"> </textarea>
+								<textarea type="text" name="deskripsiitem" class="form-control" placeholder="Enter Description"></textarea>
+							</div>
+							<div class="form-group">
+								<label>Category Item</label>
+								<select class="custom-select drpdw" name="kategoriitem">
+									<option selected>Select Category</option>
+									<option value="Basketball Shoe">Basketball Shoe</option>
+									<option value="T-Shirt">T-Shirt</option>
+									<option value="Jersey">Jersey</option>
+									<option value="Hoodie">Hoodie</option>
+									<option value="Shorts">Shorts</option>
+								</select>
 							</div>
 							<div class="form-group">
 								<label>Picture</label>
 								<input type="file" name="foto" class="form-control">
 							</div>
-
+							<input value="open" type="hidden" name="status" class="form-control">
 						</div>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
@@ -327,10 +344,20 @@
 								<textarea type="text" name="deskripsiitem" id="deskripsibarang" class="form-control"> </textarea>
 							</div>
 							<div class="form-group">
+								<label>Category Item</label>
+								<select class="custom-select drpdw" name="kategoriitem" id="kategoriitem">
+									<option selected>Select Category</option>
+									<option value="Basketball Shoe">Basketball Shoe</option>
+									<option value="T-Shirt">T-Shirt</option>
+									<option value="Jersey">Jersey</option>
+									<option value="Hoodie">Hoodie</option>
+									<option value="Shorts">Shorts</option>
+								</select>
+							</div>
+							<div class="form-group">
 								<label>Picture</label>
 								<input type="file" name="foto" class="form-control">
 							</div>
-
 						</div>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
@@ -402,6 +429,7 @@
 			$('#namabarang').val(data[1]);
 			$('#hargabarang').val(data[3]);
 			$('#deskripsibarang').val(data[4]);
+			$('#kategoriitem').val(data[5]);
 		});
 
 		$('.deletebtn').on('click', function() {
