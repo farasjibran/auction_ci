@@ -20,6 +20,7 @@
 
 	<!-- Custom styles for this page -->
 	<link href="<?php echo base_url('assets/datatables/dataTables.bootstrap4.min.css') ?>" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.28.1/sweetalert2.css">
 
 </head>
 
@@ -157,7 +158,7 @@
 								</a>
 								<div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
 									<div class="dropdown-header">Action</div>
-									<a class="dropdown-item addbtn" href="#">
+									<a class="dropdown-item addbtn">
 										<i class="fas fa-plus fa-sm fa-fw" style="color: green;">
 										</i> Add Data
 									</a>
@@ -175,54 +176,21 @@
 						<!-- Card Body -->
 						<div class="card-body">
 							<div class="table-responsive">
-								<table class="table table-bordered text-center" cellspacing="0" width="100%" id="dataTable">
+								<table class="table table-bordered text-center" cellspacing="0" width="100%" id="dataLelang">
 									<thead class="bg-primary text-white">
 										<tr>
-											<th scope="col">Id Barang</th>
-											<th scope="col">Nama Barang</th>
-											<th scope="col">Tanggal Upload</th>
-											<th scope="col">Harga Awal</th>
-											<th scope="col">Deskripsi Barang</th>
-											<th scope="col">Kategori Barang</th>
-											<th scope="col">Foto Barang</th>
-											<th scope="col">Status</th>
-											<th scope="col">Action</th>
+											<th>Id Barang</th>
+											<th>Nama Barang</th>
+											<th>Tanggal Upload</th>
+											<th>Harga Awal</th>
+											<th>Deskripsi Barang</th>
+											<th>Kategori Barang</th>
+											<th>Foto Barang</th>
+											<th>Status</th>
+											<th>Action</th>
 										</tr>
 									</thead>
 									<tbody>
-										<?php
-										if ($c_barang > 0) {
-											foreach ($barang as $barangs) {
-										?>
-												<tr>
-													<td scope="row"><?php echo $barangs->id_barang ?></td>
-													<td><?php echo $barangs->nama_barang ?></td>
-													<td><?php echo $barangs->tanggal_upload ?></td>
-													<td><?php echo $barangs->harga_awal ?></td>
-													<td><?php echo $barangs->deskripsi_barang ?></td>
-													<td><?php echo $barangs->kategori_barang ?></td>
-													<td><img style="width: 100%;" src="<?php echo base_url('assets/fotobarang/' . $barangs->foto_barang) ?>"></td>
-													<td><?php echo $barangs->status ?></td>
-													<td>
-														<button type="button" class="btn btn-primary btn-icon-split editbtn" style="padding-right: 6%;">
-															<span class="icon text-white">
-																<i class="fas fa-edit"></i>
-															</span>
-															<span class="text">Edit Data</span>
-														</button>
-														<button type="button" class="btn btn-danger btn-icon-split mt-2 deletebtn">
-															<span class="icon text-white">
-																<i class="fas fa-trash"></i>
-															</span>
-															<span class="text">Delete Data</span>
-														</button>
-													</td>
-												</tr>
-										<?php }
-										} else {
-											echo "Data Tidak Ditemukan";
-										}
-										?>
 									</tbody>
 								</table>
 							</div>
@@ -278,23 +246,23 @@
 							<span aria-hidden="true">&times;</span>
 						</button>
 					</div>
-					<form method="post" action="<?php echo base_url('index.php/homecontroller/addData') ?>" enctype="multipart/form-data">
+					<form id="formtambah" method="post">
 						<div class="modal-body">
 							<div class="form-group">
-								<label>Name Of Goods</label>
-								<input type="text" name="namabarang" class="form-control" placeholder="Enter Name Goods">
+								<label>Name Goods</label>
+								<input type="text" name="namabarang" id="nmabarang" class="form-control" placeholder="Enter Name Goods">
 							</div>
 							<div class="form-group">
-								<label>Price Of Goods</label>
-								<input type="text" name="hargabarang" class="form-control" placeholder="Enter Price Goods">
+								<label>Price Goods</label>
+								<input type="text" name="hargabarang" id="hrgbarang" class="form-control" placeholder="Enter Price Goods">
 							</div>
 							<div class="form-group">
 								<label>Description Item</label>
-								<textarea type="text" name="deskripsiitem" class="form-control" placeholder="Enter Description"></textarea>
+								<textarea type="text" name="deskripsiitem" id="deskitem" class="form-control" placeholder="Enter Description"></textarea>
 							</div>
 							<div class="form-group">
 								<label>Category Item</label>
-								<select class="custom-select drpdw" name="kategoriitem">
+								<select class="custom-select drpdw" name="kategoriitem" id="ktgritem">
 									<option selected>Select Category</option>
 									<option value="Basketball Shoe">Basketball Shoe</option>
 									<option value="T-Shirt">T-Shirt</option>
@@ -305,13 +273,14 @@
 							</div>
 							<div class="form-group">
 								<label>Picture</label>
-								<input type="file" name="foto" class="form-control">
+								<input type="file" name="user_image" id="user_image" class="form-control">
 							</div>
-							<input value="open" type="hidden" name="status" class="form-control">
+							<input value="open" type="hidden" id="statusbarang" name="status" class="form-control">
 						</div>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-							<button type="submit" class="btn btn-success">Add Data</button>
+							<input type="hidden" name="action" class="btn btn-success" value="Add" />
+							<input type="submit" value="Add" name="action" class="btn btn-success" />
 						</div>
 					</form>
 				</div>
@@ -328,20 +297,23 @@
 							<span aria-hidden="true">&times;</span>
 						</button>
 					</div>
-					<form method="post" action="<?php echo base_url('index.php/homecontroller/updateData') ?>" enctype="multipart/form-data">
+					<form id="formedit" method="post">
 						<div class="modal-body">
-							<input type=hidden name="idbarang" id="idbarang" class="form-control" placeholder="Enter Name Of Goods">
 							<div class="form-group">
-								<label>Name Of Goods</label>
-								<input type="text" name="namabarang" id="namabarang" class="form-control" placeholder="Enter Name Of Goods">
+								<label>Thumbnail</label>
+								<span id="foto_barang"></span>
 							</div>
 							<div class="form-group">
-								<label>Price Of Goods</label>
-								<input type="text" name="hargabarang" id="hargabarang" class="form-control" placeholder="Enter Price Of Goods">
+								<label>Name Goods</label>
+								<input type="text" name="namabarang" id="namabarang" class="form-control" placeholder="Enter Name Goods">
+							</div>
+							<div class="form-group">
+								<label>Price Goods</label>
+								<input type="text" name="hargabarang" id="hargabarang" class="form-control" placeholder="Enter Price Goods">
 							</div>
 							<div class="form-group">
 								<label>Description Item</label>
-								<textarea type="text" name="deskripsiitem" id="deskripsibarang" class="form-control"> </textarea>
+								<textarea type="text" name="deskripsiitem" id="deskripsiitem" class="form-control" placeholder="Enter Description"></textarea>
 							</div>
 							<div class="form-group">
 								<label>Category Item</label>
@@ -356,36 +328,22 @@
 							</div>
 							<div class="form-group">
 								<label>Picture</label>
-								<input type="file" name="foto" class="form-control">
+								<input type="file" name="user_image" id="image" class="form-control">
+							</div>
+							<div class="form-group">
+								<label>Status</label>
+								<select class="custom-select drpdw" name="status" id="status">
+									<option selected>Status</option>
+									<option value="open">Open</option>
+									<option value="close">Close</option>
+								</select>
 							</div>
 						</div>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-							<button type="submit" class="btn btn-primary">Save changes</button>
-						</div>
-					</form>
-				</div>
-			</div>
-		</div>
-
-		<!-- Delete Modal -->
-		<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-hidden="true">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h5 class="modal-title">Delete Data</h5>
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-					</div>
-					<form action="<?php echo base_url('index.php/homecontroller/deleteData') ?>" method="post">
-						<div class="modal-body">
-							<input type=hidden name="idbarangs" id="idbarangs" class="form-control">
-							<label>Are You Sure To Delete This Data?</label>
-						</div>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-							<button type="submit" class="btn btn-danger">Delete Data</button>
+							<input type="hidden" name="id_barang" id="id_barang" class="btn btn-success" value="" />
+							<input type="hidden" name="action" class="btn btn-success" value="Edit" />
+							<input type="submit" value="Edit" name="action" class="btn btn-success" />
 						</div>
 					</form>
 				</div>
@@ -405,51 +363,205 @@
 		<!-- Page level plugins -->
 		<script src="<?php echo base_url('assets/datatables/jquery.dataTables.min.js') ?>"></script>
 		<script src="<?php echo base_url('assets/datatables/dataTables.bootstrap4.min.js') ?>"></script>
-		<!-- Page level custom scripts -->
-		<script src="<?php echo base_url('assets/js/datatables-demo.js') ?>"></script>
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.28.1/sweetalert2.all.min.js"></script>
 
 </body>
 
 
 <script>
 	$(document).ready(function() {
-		$('.editbtn').on('click', function() {
-
-			$('#editModal').modal('show');
-
-			$tr = $(this).closest('tr');
-
-			var data = $tr.children("td").map(function() {
-				return $(this).text();
-			});
-
-			console.log(data);
-
-			$('#idbarang').val(data[0]);
-			$('#namabarang').val(data[1]);
-			$('#hargabarang').val(data[3]);
-			$('#deskripsibarang').val(data[4]);
-			$('#kategoriitem').val(data[5]);
-		});
-
-		$('.deletebtn').on('click', function() {
-
-			$('#deleteModal').modal('show');
-
-			$tr = $(this).closest('tr');
-
-			var data = $tr.children("td").map(function() {
-				return $(this).text();
-			});
-
-			console.log(data);
-
-			$('#idbarangs').val(data[0]);
-		});
-
+		// ini adalah fungsi untuk memunculkan modal
 		$('.addbtn').on('click', function() {
 
 			$('#addModal').modal('show');
+
+		});
+		// ini adalah fungsi untuk memunculkan data di datatable
+		var datalelang = $('#dataLelang').DataTable({
+			"processing": true,
+			"ajax": "<?= base_url("index.php/homecontroller/dataBarang") ?>",
+			"order": [],
+		});
+
+		// Tambah barang
+		$(document).on('submit', '#formtambah', function(event) {
+			event.preventDefault();
+			var namabarang = $('#nmabarang').val();
+			var hargabarang = $('#hrgbarang').val();
+			var deskripsiitem = $('#deskitem').val();
+			var kategoriitem = $('#ktgritem').val();
+			var extension = $('#user_image').val().split('.').pop().toLowerCase();
+			if (jQuery.inArray(extension, ['gif', 'png', 'jpg', 'jpeg']) == -1) {
+				alert("Invalid Image");
+				$('#user_image').val('');
+				return false;
+			}
+
+			if (namabarang != '' && hargabarang != '' && deskripsiitem != '' && kategoriitem != '') {
+				$.ajax({
+					type: "post",
+					url: "<?= base_url("index.php/homecontroller/addData") ?>",
+					beforeSend: function() {
+						swal({
+							title: 'Menunggu',
+							html: 'Memproses data',
+							onOpen: () => {
+								swal.showLoading()
+							}
+						})
+					},
+					data: new FormData(this),
+					contentType: false,
+					processData: false,
+					success: function() {
+						swal({
+							type: 'success',
+							title: 'Tambah Barang',
+							text: 'Anda Berhasil Menambah Barang'
+						})
+						$('#formtambah')[0].reset();
+						$('#addModal').modal('hide');
+						datalelang.ajax.reload(null, false);
+					},
+				});
+			} else {
+				Swal.fire({
+					icon: 'error',
+					title: 'Oops...',
+					text: 'Bother fields are required!',
+				});
+			}
+		});
+
+		// Edit barang
+		$(document).on('submit', '#formedit', function(event) {
+			event.preventDefault();
+			var namabarang = $('#namabarang').val();
+			var hargabarang = $('#hargabarang').val();
+			var deskripsiitem = $('#deskripsiitem').val();
+			var kategoriitem = $('#kategoriitem').val();
+			var status = $('#status').val();
+			var extension = $('#image').val().split('.').pop().toLowerCase();
+			if (jQuery.inArray(extension, ['gif', 'png', 'jpg', 'jpeg']) == -1) {
+				alert("Invalid Image");
+				$('#image').val('');
+				return false;
+			}
+
+			if (namabarang != '' && hargabarang != '' && deskripsiitem != '' && kategoriitem != '' && status != '') {
+				$.ajax({
+					type: "post",
+					url: "<?= base_url("index.php/homecontroller/editData") ?>",
+					beforeSend: function() {
+						swal({
+							title: 'Menunggu',
+							html: 'Memproses data',
+							onOpen: () => {
+								swal.showLoading()
+							}
+						})
+					},
+					data: new FormData(this),
+					contentType: false,
+					processData: false,
+					success: function() {
+						swal({
+							type: 'success',
+							title: 'Edit Barang',
+							text: 'Anda Berhasil Mengedit Barang'
+						})
+						$('#formedit')[0].reset();
+						$('#editModal').modal('hide');
+						datalelang.ajax.reload(null, false);
+					},
+					error: function(xhr, ajaxOptions, thrownError) {
+						console.log(xhr.responseText);
+					}
+				});
+			} else {
+				Swal.fire({
+					icon: 'error',
+					title: 'Oops...',
+					text: 'Bother fields are required!',
+				});
+			}
+		});
+
+		// Get Barang
+		$(document).on('click', '.editbtn', function() {
+			// console.log("lsadjlaskdjaskldj")
+			var id_barang = $(this).attr("id");
+			$.ajax({
+				url: "<?= base_url("index.php/homecontroller/getIdBarang") ?>",
+				type: "post",
+				data: {
+					id_barang: id_barang
+				},
+				dataType: "JSON",
+				success: function(data) {
+					$('#editModal').modal('show');
+					$('#namabarang').val(data.nama_barang);
+					$('#hargabarang').val(data.harga_awal);
+					$('#deskripsiitem').val(data.deskripsi_barang);
+					$('#kategoriitem').val(data.kategori_barang);
+					$('#status').val(data.status);
+					$('#id_barang').val(id_barang);
+					$('#foto_barang').html(data.foto_barang);
+				},
+				error: function(xhr, ajaxOptions, thrownError) {
+					console.log(xhr.responseText);
+				}
+			});
+		});
+
+		// Delete Barang
+		$(document).on('click', '.deletebtn', function() {
+			var id_barang = $(this).attr("id");
+			swal({
+				title: 'Konfirmasi',
+				text: "Apakah anda yakin ingin menghapus ",
+				type: 'warning',
+				showCancelButton: true,
+				confirmButtonText: 'Hapus',
+				confirmButtonColor: '#d33',
+				cancelButtonColor: '#3085d6',
+				cancelButtonText: 'Tidak',
+				reverseButtons: true
+			}).then((result) => {
+				if (result.value) {
+					$.ajax({
+						url: "<?= base_url('index.php/homecontroller/deleteBarang') ?>",
+						type: "post",
+						beforeSend: function() {
+							swal({
+								title: 'Menunggu',
+								html: 'Memproses data',
+								onOpen: () => {
+									swal.showLoading()
+								}
+							})
+						},
+						data: {
+							id_barang: id_barang
+						},
+						success: function(data) {
+							swal(
+								'Hapus',
+								'Berhasil Terhapus',
+								'success'
+							)
+							datalelang.ajax.reload(null, false)
+						}
+					});
+				} else if (result.dismiss === swal.DismissReason.cancel) {
+					swal(
+						'Batal',
+						'Anda membatalkan penghapusan',
+						'error'
+					)
+				};
+			});
 
 		});
 	});

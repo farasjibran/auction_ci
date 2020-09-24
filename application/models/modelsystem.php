@@ -54,52 +54,17 @@ class modelsystem extends CI_Model
 		return $datauser;
 	}
 
-	// for barang
-	public function simpanBarang()
-	{
-		$foto = $_FILES['foto']['tmp_name'];
-		if ($foto = '') {
-			echo "Tidak Ada Gambar!";
-		} else {
-			$config['upload_path'] = './assets/fotobarang';
-			$config['allowed_types'] = 'jpg|png|gif';
-
-			$this->load->library('upload');
-			$this->upload->initialize($config);
-			if (!$this->upload->do_upload('foto')) {
-				echo "gagal upload";
-				die();
-			} else {
-				$foto = $this->upload->data('file_name');
-			}
-		}
-
-		$data = array(
-			'id_barang' => "",
-			'nama_barang' => $this->input->post('namabarang'),
-			'harga_awal' => $this->input->post('hargabarang'),
-			'deskripsi_barang' => $this->input->post('deskripsiitem'),
-			'kategori_barang' => $this->input->post('kategoriitem'),
-			'foto_barang' => $foto,
-			'status' => $this->input->post('status')
-		);
-
-		$this->db->set('tanggal_upload', 'NOW()', FALSE);
-		$this->db->insert('tb_barang', $data);
-		header("Location: " . base_url() . 'index.php/homecontroller/viewGoods');
-	}
-
 	public function get_barang()
 	{
 		$data = $this->db->get('tb_barang');
-		return $data->result();
+		return $data->result_array();
 	}
 
-	public function count_barang()
-	{
-		$data = $this->db->get('tb_barang');
-		return $data->num_rows();
-	}
+	// public function count_barang()
+	// {
+	// 	$data = $this->db->get('tb_barang');
+	// 	return $data->num_rows();
+	// }
 
 	public function update_data($where, $data, $table)
 	{
@@ -131,5 +96,20 @@ class modelsystem extends CI_Model
 		// return $query->result();
 		$data = $this->db->get('tb_barang');
 		return $data->num_rows();
+	}
+
+	// AJAX MODEL
+	// function edit
+	public function getIdBarang($id_barang)
+	{
+		$this->db->where("id_barang", $id_barang);
+		$query = $this->db->get('tb_barang');
+		return $query->result();
+	}
+
+	public function updateBarang($id_barang, $data)
+	{
+		$this->db->where("id_barang", $id_barang);
+		$this->db->update("tb_barang", $data);
 	}
 }

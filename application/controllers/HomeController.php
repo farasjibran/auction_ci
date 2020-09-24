@@ -157,12 +157,46 @@ class HomeController extends CI_Controller
 		redirect(base_url());
 	}
 
+	public function dataBarang()
+	{
+		$databarang = $this->modelsystem->get_barang();
+		foreach ($databarang as $value) {
+			$tbody = array();
+			$tbody[] = $value['id_barang'];
+			$tbody[] = $value['nama_barang'];
+			$tbody[] = $value['tanggal_upload'];
+			$tbody[] = $value['harga_awal'];
+			$tbody[] = $value['deskripsi_barang'];
+			$tbody[] = $value['kategori_barang'];
+			$img = "<img style='width: 100%;' src='http://localhost/auction_ci/assets/fotobarang/" . $value['foto_barang'] . "' ?>";
+			$tbody[] = $img;
+			$tbody[] = $value['status'];
+			$btn = "<button type='button' class='btn btn-primary btn-icon-split editbtn' name='editbtn' data-toggle='modal' id=" . $value['id_barang'] . " 	style='padding-right: 6%;'>
+						<span class='icon text-white'>
+							<i class='fas fa-edit'></i>
+						</span>
+						<span class='text'>Edit Data</span>
+						</button>
+						<button type='button' data-toggle='modal' name='deletebtn' id=" . $value['id_barang'] . " class='btn btn-danger btn-icon-split mt-2 deletebtn'>
+							<span class='icon text-white'>
+								<i class='fas fa-trash'></i>
+							</span>
+							<span class='text'>Delete Data</span>
+						</button>";
+			$tbody[] = $btn;
+			$data[] = $tbody;
+		}
+		if ($databarang) {
+			echo json_encode(array('data' => $data));
+		} else {
+			echo json_encode(array('data' => 0));
+		}
+	}
+
 	public function viewGoods()
 	{
 		if ($this->session->userdata('id_level') == 1 || 2) {
 			$data['title'] = "Auction";
-			$data['barang'] = $this->modelsystem->get_barang();
-			$data['c_barang'] = $this->modelsystem->count_barang();
 			$this->load->view('admin/viewgoods', $data);
 		} else {
 			echo 'this is user view';
@@ -192,64 +226,86 @@ class HomeController extends CI_Controller
 	// add goods
 	public function addData()
 	{
-		$this->modelsystem->simpanBarang();
-	}
-
-	// update barang
-	public function updateData()
-	{
-		$idbarangs = $this->input->post('idbarang');
-		$namabarangs = $this->input->post('namabarang');
-		$hargabarangs = $this->input->post('hargabarang');
-		$deskripsiitems = $this->input->post('deskripsiitem');
-		$kategoriitems = $this->input->post('kategoriitem');
-		$foto = $_FILES['foto']['tmp_name'];
-		if ($foto = '') {
-			echo "Tidak Ada Gambar!";
-		} else {
-			$config['upload_path'] = './assets/fotobarang';
-			$config['allowed_types'] = 'jpg|png|gif';
-
-			$this->load->library('upload');
-			$this->upload->initialize($config);
-			if (!$this->upload->do_upload('foto')) {
-				echo "gagal upload";
-				die();
-			} else {
-				$foto = $this->upload->data('file_name');
-			}
+		if ($_POST["action"] == "Add") {
+			$data = array(
+				'id_barang' => "",
+				'nama_barang' => $this->input->post('namabarang'),
+				'harga_awal' => $this->input->post('hargabarang'),
+				'deskripsi_barang' => $this->input->post('deskripsiitem'),
+				'kategori_barang' => $this->input->post('kategoriitem'),
+				'foto_barang' => $this->upload_image(),
+				'status' => $this->input->post('status')
+			);
+			$this->db->set('tanggal_upload', 'NOW()', FALSE);
+			$this->db->insert('tb_barang', $data);
+			echo 'Data Inserted';
 		}
-
-		$data = array(
-			'nama_barang' => $namabarangs,
-			'harga_awal' => $hargabarangs,
-			'deskripsi_barang' => $deskripsiitems,
-			'kategori_barang' => $kategoriitems,
-			'foto_barang' => $foto
-		);
-
-		$where = array(
-			'id_barang' => $idbarangs
-		);
-
-		$this->db->set('tanggal_upload', 'NOW()', FALSE);
-		$this->modelsystem->update_data($where, $data, 'tb_barang');
-		header("Location: " . base_url() . 'index.php/homecontroller/viewGoods');
 	}
 
-	// delete barang
-	public function deleteData()
+	public function editData()
 	{
-		$idbarangs = $this->input->post('idbarangs');
+		if ($_POST["action"] == "Edit") {
+			$idbarang = $this->input->post('id_barang');
+			$data = array(
+				'nama_barang' => $this->input->post('namabarang'),
+				'harga_awal' => $this->input->post('hargabarang'),
+				'deskripsi_barang' => $this->input->post('deskripsiitem'),
+				'kategori_barang' => $this->input->post('kategoriitem'),
+				'foto_barang' => $this->upload_image(),
+				'status' => $this->input->post('status')
+			);
 
+			$where = array(
+				'id_barang' => $idbarang
+			);
+
+			$this->db->set('tanggal_upload', 'NOW()', FALSE);
+			$this->modelsystem->update_data($where, $data, 'tb_barang');
+			echo 'Data Updated';
+		}
+	}
+
+	// function upload image
+	public function upload_image()
+	{
+		if (isset($_FILES['user_image'])) {
+			$extension = explode('.', $_FILES['user_image']['name']);
+			$new_name = rand() . '.' . $extension[1];
+			$destination = './assets/fotobarang/' . $new_name;
+			move_uploaded_file($_FILES['user_image']['tmp_name'], $destination);
+			return $new_name;
+		}
+	}
+
+	// function edit data
+	public function getIdBarang()
+	{
+		$output = array();
+		$data = $this->modelsystem->getIdBarang($_POST["id_barang"]);
+		foreach ($data as $row) {
+			$output['nama_barang'] = $row->nama_barang;
+			$output['harga_awal'] = $row->harga_awal;
+			$output['deskripsi_barang'] = $row->deskripsi_barang;
+			$output['kategori_barang'] = $row->kategori_barang;
+			if ($row->foto_barang != '') {
+				$output['foto_barang'] = '<img style="width: 100%;" src="' . base_url() . 'assets/fotobarang/' . $row->foto_barang . '" /><input type="hidden" name="hidden_barang_image" value="' . $row->foto_barang . '"/>';
+			} else {
+				$output['foto_barang'] = '<input type="hidden" name="hidden_barang_image" value=""/>';
+			}
+			$output['status'] = $row->status;
+		}
+		echo json_encode($output);
+	}
+
+	// Delete Barang
+	public function deleteBarang()
+	{
+		$idbarang = $_POST['id_barang'];
 		$where = array(
-			'id_barang' => $idbarangs
+			'id_barang' => $idbarang
 		);
-
-		echo $where;
 
 		$this->modelsystem->hapus_data($where, 'tb_barang');
-		header("Location: " . base_url() . 'index.php/homecontroller/viewGoods');
 	}
 
 	// dompdf
