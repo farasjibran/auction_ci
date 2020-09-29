@@ -60,11 +60,17 @@ class modelsystem extends CI_Model
 		return $data->result_array();
 	}
 
-	// public function count_barang()
-	// {
-	// 	$data = $this->db->get('tb_barang');
-	// 	return $data->num_rows();
-	// }
+	public function get_all()
+	{
+		$data = $this->db->get('tb_barang');
+		return $data->result();
+	}
+
+	public function count_barang()
+	{
+		$data = $this->db->get('tb_barang');
+		return $data->num_rows();
+	}
 
 	public function update_data($where, $data, $table)
 	{

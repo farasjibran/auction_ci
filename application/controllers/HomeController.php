@@ -21,7 +21,7 @@ class HomeController extends CI_Controller
 	{
 		if ($this->session->userdata('id_level') == 3) {
 			$data['title'] = "Auction";
-			$data['barang'] = $this->modelsystem->get_barang();
+			$data['barang'] = $this->modelsystem->get_all();
 			$data['c_barang'] = $this->modelsystem->count_barang();
 			$this->load->view('users/homeuser', $data);
 		} else {
@@ -35,7 +35,7 @@ class HomeController extends CI_Controller
 		if ($this->session->userdata('status') == "login") {
 			if ($this->session->userdata('id_level') == 3) {
 				$data['title'] = "Auction";
-				$data['barang'] = $this->modelsystem->get_barang();
+				$data['barang'] = $this->modelsystem->get_all();
 				$data['c_barang'] = $this->modelsystem->count_barang();
 				$this->load->view('users/homeuser', $data);
 			} else if ($this->session->userdata('id_level') == 1 && 2) {
@@ -165,7 +165,8 @@ class HomeController extends CI_Controller
 			$tbody[] = $value['id_barang'];
 			$tbody[] = $value['nama_barang'];
 			$tbody[] = $value['tanggal_upload'];
-			$tbody[] = $value['harga_awal'];
+			$harga = "Rp." . $value['harga_awal'];
+			$tbody[] = $harga;
 			$tbody[] = $value['deskripsi_barang'];
 			$tbody[] = $value['kategori_barang'];
 			$img = "<img style='width: 100%;' src='http://localhost/auction_ci/assets/fotobarang/" . $value['foto_barang'] . "' ?>";
