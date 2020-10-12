@@ -4,6 +4,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class modelsystem extends CI_Model
 {
+	private $_table = "tb_barang";
+
 	// for login & register
 	public function simpanPetugas()
 	{
@@ -117,5 +119,11 @@ class modelsystem extends CI_Model
 	{
 		$this->db->where("id_barang", $id_barang);
 		$this->db->update("tb_barang", $data);
+	}
+
+	// get id
+	public function getById($id)
+	{
+		return $this->db->get_where($this->_table, ["id_barang" => $id])->row();
 	}
 }

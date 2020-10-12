@@ -6,6 +6,10 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title><?php echo $title ?></title>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+	<link href="<?php echo base_url('assets/fontawesome-free/css/all.min.css') ?>" rel="stylesheet" type="text/css">
+
+	<!-- Theme style  -->
+	<link rel="stylesheet" href="<?= base_url('assets/css/footer.css') ?>">
 
 	<!-- My Style -->
 	<style>
@@ -65,7 +69,7 @@
 	<div class="container judul">
 		<div class="row">
 			<div class="col-md-3">
-				<h2>Items <b>In</b> Catalog</h2>
+				<h2>Current <b> Auction</b></h2>
 			</div>
 			<div class="col-md-3" style="margin-top: 5px;">
 				<hr class="sidebar-divider" style="border-top: 2px solid black;">
@@ -83,7 +87,7 @@
 			if ($c_barang > 0) {
 				foreach ($barang as $barangs) {
 			?>
-					<div class="col-md-4  mt-5">
+					<div class="col-md-4 mt-5">
 						<div class="card" style="width: 18rem;">
 							<div class="card-img">
 								<img style="height: %;" src="<?php echo base_url('assets/fotobarang/' . $barangs->foto_barang) ?>" class="card-img-top">
@@ -92,7 +96,7 @@
 								<h5 class="card-title"><?php echo $barangs->nama_barang ?></h5>
 								<label style="color: grey;"><i><?php echo $barangs->kategori_barang ?></i></label>
 								<p class="card-text"><?php echo substr($barangs->deskripsi_barang, 0, 94) ?>...</p>
-								<a href="#" class="btn btn-primary">Read More...</a>
+								<a href="<?php echo site_url('homecontroller/getId/') . $barangs->id_barang ?>" class="btn btn-primary">Read More...</a>
 							</div>
 						</div>
 					</div>
@@ -104,6 +108,53 @@
 			?>
 		</div>
 	</div>
+
+	<footer id="colorlib-footer" style="margin-top: 10%;">
+		<div class="container">
+			<div class="row row-pb-md" style="margin-bottom: 6%;">
+				<div class="col-md-3 colorlib-widget" style="margin-left: 13%;">
+					<h4>About <?php echo $title ?></h4>
+					<p>
+						An auction is the process of buying and selling goods or services by offering to the bidder, offering a higher price bid, and then selling the item to the highest bidder.
+					</p>
+				</div>
+				<div class="col-md-3 colorlib-widget" style="margin-left: 7%;">
+					<h4>Page</h4>
+					<p>
+						<ul class="colorlib-footer-links">
+							<li><a href="#"><i class="fas fa-fw fa-check"></i> Home</a></li>
+							<li><a href="#"><i class="fas fa-fw fa-check"></i> History</a></li>
+							<li><a href="#"><i class="fas fa-fw fa-check"></i> Catalogue</a></li>
+						</ul>
+					</p>
+				</div>
+
+				<div class="col-md-3 colorlib-widget">
+					<h4>Contact Info</h4>
+					<ul class="colorlib-footer-links">
+						<li>Depok Jawa Barat, <br> Perum Griya Kalibaru Blok B2 NO4</li>
+						<li><a href="tel://08815639749"><i class="fas fa-fw fa-phone"></i> + 08815639749</a></li>
+						<li><a href="mailto:farasjibran@gmail.com"><i class="fas fa-fw fa-envelope"></i> farasjibran@gmail.com</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="copy">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12 text-center">
+						<p>
+							<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+							Copyright &copy;<script>
+								document.write(new Date().getFullYear());
+							</script> All rights reserved | This website is made with <i class="fas fa-fw fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Toughput</a>
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer>
 </body>
 
 </html>

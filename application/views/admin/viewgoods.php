@@ -65,7 +65,7 @@
 					<div class="bg-white py-2 collapse-inner rounded">
 						<h6 class="collapse-header">Action For Goods</h6>
 						<a class="collapse-item active" href="<?php echo site_url('homecontroller/viewGoods') ?>"><i class="fas fa-fw fa-box" style="margin-right: 10px;"></i>View Goods</a>
-						<a class="collapse-item" href="<?php echo site_url('homecontroller/viewGoods') ?>"><i class="fas fa-fw fa-th-large" style="margin-right: 10px;"></i>Catalogue View</a>
+						<a class="collapse-item" href="<?php echo site_url('homecontroller/viewCatalog') ?>"><i class="fas fa-fw fa-th-large" style="margin-right: 10px;"></i>Catalogue View</a>
 					</div>
 				</div>
 			</li>
@@ -145,10 +145,7 @@
 					<!-- Page Heading -->
 					<div class="d-sm-flex align-items-center justify-content-between mb-4">
 						<h1 class="h3 mb-0 text-gray-800">View Goods</h1>
-					</div>
-
-
-					<!-- Area Data -->
+					</div <!-- Area Data -->
 					<div class="card shadow mb-4">
 						<!-- Card Header - Dropdown -->
 						<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
@@ -444,11 +441,11 @@
 			var kategoriitem = $('#kategoriitem').val();
 			var status = $('#status').val();
 			var extension = $('#image').val().split('.').pop().toLowerCase();
-			if (jQuery.inArray(extension, ['gif', 'png', 'jpg', 'jpeg']) == -1) {
-				alert("Invalid Image");
-				$('#image').val('');
-				return false;
-			}
+			// if (jQuery.inArray(extension, ['gif', 'png', 'jpg', 'jpeg']) == -1) {
+			// 	alert("Invalid Image");
+			// 	$('#image').val('');
+			// 	return false;
+			// }
 
 			if (namabarang != '' && hargabarang != '' && deskripsiitem != '' && kategoriitem != '' && status != '') {
 				$.ajax({

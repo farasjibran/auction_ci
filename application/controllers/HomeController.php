@@ -8,7 +8,6 @@ class HomeController extends CI_Controller
 		parent::__construct();
 		$this->load->model('modelsystem');
 		$this->load->model('modelexcel');
-		$this->load->helper('url');
 	}
 
 	public function index()
@@ -204,6 +203,30 @@ class HomeController extends CI_Controller
 		}
 	}
 
+	public function viewCatalog()
+	{
+		if ($this->session->userdata('id_level') == 1 || 2) {
+			$data['title'] = "Auction";
+			$data['barang'] = $this->modelsystem->get_all();
+			$data['c_barang'] = $this->modelsystem->count_barang();
+			$this->load->view('admin/viewcatalogue', $data);
+		} else {
+			echo 'this is user view';
+		}
+	}
+
+	public function cardView()
+	{
+		if ($this->session->userdata('id_level') == 1 || 2) {
+			$data['title'] = "Auction";
+			$data['barang'] = $this->modelsystem->get_all();
+			$data['c_barang'] = $this->modelsystem->count_barang();
+			$this->load->view('admin/cardview', $data);
+		} else {
+			echo 'this is user view';
+		}
+	}
+
 	// admin home
 	public function adminHome()
 	{
@@ -312,7 +335,7 @@ class HomeController extends CI_Controller
 	// dompdf
 	public function cetakData()
 	{
-		$data['barang'] = $this->modelsystem->get_barang();
+		$data['barang'] = $this->modelsystem->get_all();
 		$data['c_barang'] = $this->modelsystem->count_barang();
 		$this->load->library('pdf');
 		$this->pdf->setPaper('A4', 'potrait');
@@ -377,6 +400,17 @@ class HomeController extends CI_Controller
 
 		$this->modelsystem->hapus_data($where, 'tb_petugas');
 		header("Location: " . base_url() . 'index.php/homecontroller/viewOfficer');
+	}
+
+	// getid
+	public function getId($id = null)
+	{
+		$data['title'] = "Auction";
+		$data['barang'] = $this->modelsystem->getById($id);
+		if (!$data["barang"]) {
+			echo "Tidak Ada Data";
+		}
+		$this->load->view("users/item-singgle", $data);
 	}
 
 	// 404 password

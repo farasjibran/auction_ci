@@ -64,7 +64,7 @@
 					<div class="bg-white py-2 collapse-inner rounded">
 						<h6 class="collapse-header">Action For Goods</h6>
 						<a class="collapse-item" href="<?php echo site_url('homecontroller/viewGoods') ?>"><i class="fas fa-fw fa-box" style="margin-right: 10px;"></i>View Goods</a>
-						<a class="collapse-item" href="<?php echo site_url('homecontroller/viewGoods') ?>"><i class="fas fa-fw fa-th-large" style="margin-right: 10px;"></i>Catalogue View</a>
+						<a class="collapse-item" href="<?php echo site_url('homecontroller/viewCatalog') ?>"><i class="fas fa-fw fa-th-large" style="margin-right: 10px;"></i>Catalogue View</a>
 					</div>
 				</div>
 			</li>

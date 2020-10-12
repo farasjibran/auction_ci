@@ -68,7 +68,7 @@ class modelexcel extends CI_Model
 		$excel->getActiveSheet()->getStyle('D3')->applyFromArray($style_col);
 		$excel->getActiveSheet()->getStyle('E3')->applyFromArray($style_col);
 		// Panggil function view yang ada di SiswaModel untuk menampilkan semua data siswanya
-		$barang = $this->modelsystem->get_barang();
+		$barang = $this->modelsystem->get_all();
 		$numrow = 4; // Set baris pertama untuk isi tabel adalah baris ke 4
 		foreach ($barang as $data) { // Lakukan looping pada variabel siswa
 			$excel->setActiveSheetIndex(0)->setCellValue('A' . $numrow, $data->id_barang);
